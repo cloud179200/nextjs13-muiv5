@@ -6,11 +6,14 @@ import Loader from './Loader';
 
 // ==============================|| LOADABLE - LAZY LOADING ||============================== //
 
-const Loadable = (Component) => (props) =>
-    (
-        <Suspense fallback={<Loader />}>
-            <Component {...props} />
-        </Suspense>
+const Loadable = (Component: React.FC<any>) => (props) => {
+    return (
+        <>
+            <Suspense fallback={<Loader />}>
+                <Component {...props} />
+            </Suspense>
+        </>
     );
+}
 Loadable.displayName = "Loadable";
 export default Loadable;

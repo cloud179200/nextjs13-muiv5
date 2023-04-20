@@ -1,5 +1,4 @@
 import { TypographyOptions } from "@mui/material/styles/createTypography";
-
 const themeTypography: (theme: any) => TypographyOptions = (theme: any) => {
   return {
     fontFamily: theme?.customization?.fontFamily,

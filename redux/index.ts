@@ -4,7 +4,7 @@ import customizationReducer, { ICustomizationState } from "./customization/slice
 import userReducer, {IUserState} from "./user/slice";
 import utilsReducer, { IUtilsState } from "./utils/slice";
 
-import { persistStore, persistReducer } from "redux-persist";
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
@@ -34,9 +34,12 @@ const reducer = persistReducer<IReducer, AnyAction>(persistConfig, rootReducer);
 const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer,
+  devTools: { trace: true, traceLimit: 25 },
   middleware: (getDefaultMiddleware: any) =>
     getDefaultMiddleware({
-      serializableCheck: false,
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
     }).concat(sagaMiddleware),
 });
 

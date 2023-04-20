@@ -34,6 +34,10 @@ const customizationReducer = createSlice({
     [actionTypes.SET_LOADING_COMMON_ACTION]: (state, action: PayloadAction<any>) => {
       state.loadingCommon = action.payload.state;
     },
+    REHYDRATE: (state, action: PayloadAction<any>) => {
+      const rehydrated = (action && action.payload && action.payload.Account) || {}
+      return { ...state, ...rehydrated }
+    },
   }
 });
 

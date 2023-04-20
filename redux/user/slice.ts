@@ -18,7 +18,11 @@ const userSlice = createSlice({
     [actionTypes.SET_USER_ACTION]: (state, action: PayloadAction<{ id: string }>) => {
       state = _.clone(initialState)
       state.userInfo = { ...action.payload }
-    }
+    },
+    REHYDRATE: (state, action: PayloadAction<any>) => {
+      const rehydrated = (action && action.payload && action.payload.Account) || {}
+      return { ...state, ...rehydrated }
+    },
   }
 });
 

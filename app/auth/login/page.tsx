@@ -24,7 +24,8 @@ import { NAME_TRANS_VN } from "../../../config/constant";
 import Link from "next/link";
 import Animate from "@/components/extended/AnimateButton";
 import { _sleep } from "@/utils";
-
+import { Facebook } from "@mui/icons-material"
+import { signIn } from "next-auth/react"
 const SignInComponent = ({ ...others }) => {
   const theme = useTheme();
 
@@ -59,133 +60,152 @@ const SignInComponent = ({ ...others }) => {
 
   return (
     <>
-    <Animate animateWhenInView>
-      <Container maxWidth="sm">
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-        >
-          <Grid item md={12}>
-            <Grid
-              container
-              direction="column"
-              justifyContent="center"
-              spacing={2}
-            >
+      <Animate animateWhenInView>
+        <Container maxWidth="sm">
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            minHeight="100vh"
+          >
+            <Grid item md={12}>
               <Grid
-                item
-                xs={12}
                 container
-                alignItems="center"
+                direction="column"
                 justifyContent="center"
+                spacing={2}
               >
-                <Box sx={{ mb: 2 }}>
-                  <Typography
-                    sx={{ fontWeight: "bold" }}
-                    variant="h3"
-                    color="black"
-                  >
-                    {NAME_TRANS_VN.SIGN_IN_TITLE}
-                  </Typography>
-                </Box>
+                <Grid
+                  item
+                  xs={12}
+                  container
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Box sx={{ mb: 2 }}>
+                    <Typography
+                      sx={{ fontWeight: "bold" }}
+                      variant="h3"
+                      color="black"
+                    >
+                      {NAME_TRANS_VN.SIGN_IN_TITLE}
+                    </Typography>
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <form noValidate onSubmit={handleSubmit} {...others}>
-              <FormControl
-                fullWidth
-                error={Boolean(touched.email && errors.email)}
-                sx={{ ...theme.typography.customInput }}
-              >
-                <InputLabel>Email</InputLabel>
-                <OutlinedInput
-                  type="email"
-                  value={values.email}
-                  name="email"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  label={NAME_TRANS_VN.EMAIL}
-                />
-                {touched.email && errors.email && (
-                  <FormHelperText error>{errors.email}</FormHelperText>
-                )}
-              </FormControl>
-              <FormControl
-                fullWidth
-                error={Boolean(touched.password && errors.password)}
-                sx={{ ...theme.typography.customInput }}
-              >
-                <InputLabel>{NAME_TRANS_VN.PASSWORD}</InputLabel>
-                <OutlinedInput
-                  type={showPassword ? "text" : "password"}
-                  value={values.password}
-                  name="password"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        edge="end"
-                        size="large"
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label={NAME_TRANS_VN.PASSWORD}
-                />
-                {touched.password && errors.password && (
-                  <FormHelperText error>{errors.password}</FormHelperText>
-                )}
-              </FormControl>
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-                spacing={1}
-              >
-                <Typography
-                  variant="subtitle1"
-                  color="secondary"
-                  sx={{ textDecoration: "none", cursor: "pointer" }}
-                  component={Link}
-                  href="/"
+              <form noValidate onSubmit={handleSubmit} {...others}>
+                <FormControl
+                  fullWidth
+                  error={Boolean(touched.email && errors.email)}
+                  sx={{ ...theme.typography.customInput }}
                 >
-                  {NAME_TRANS_VN.FORGOT_PASSWORD}?
-                </Typography>
-                <Typography
-                  color="secondary"
-                  sx={{ textDecoration: "none", cursor: "pointer" }}
-                  component={Link}
-                  href="/auth/register"
+                  <InputLabel>Email</InputLabel>
+                  <OutlinedInput
+                    type="email"
+                    value={values.email}
+                    name="email"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    label={NAME_TRANS_VN.EMAIL}
+                  />
+                  {touched.email && errors.email && (
+                    <FormHelperText error>{errors.email}</FormHelperText>
+                  )}
+                </FormControl>
+                <FormControl
+                  fullWidth
+                  error={Boolean(touched.password && errors.password)}
+                  sx={{ ...theme.typography.customInput }}
                 >
-                  {NAME_TRANS_VN.DONT_HAVE_ACCOUNT}?
-                </Typography>
-              </Stack>
-              <Box sx={{ mt: 2 }}>
-                <Animate>
-                  <Button
-                    disableElevation
-                    disabled={!isValid || isSubmitting}
-                    fullWidth
-                    size="large"
-                    type="submit"
-                    variant="contained"
+                  <InputLabel>{NAME_TRANS_VN.PASSWORD}</InputLabel>
+                  <OutlinedInput
+                    type={showPassword ? "text" : "password"}
+                    value={values.password}
+                    name="password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          edge="end"
+                          size="large"
+                        >
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label={NAME_TRANS_VN.PASSWORD}
+                  />
+                  {touched.password && errors.password && (
+                    <FormHelperText error>{errors.password}</FormHelperText>
+                  )}
+                </FormControl>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  spacing={1}
+                >
+                  <Typography
+                    variant="subtitle1"
                     color="secondary"
-                    endIcon={isSubmitting && <CircularProgress color="secondary" size={20} /> }
+                    sx={{ textDecoration: "none", cursor: "pointer" }}
+                    component={Link}
+                    href="/"
                   >
-                    {NAME_TRANS_VN.SIGN_IN}
-                  </Button>
-                </Animate>
-              </Box>
-            </form>
+                    {NAME_TRANS_VN.FORGOT_PASSWORD}?
+                  </Typography>
+                  <Typography
+                    color="secondary"
+                    sx={{ textDecoration: "none", cursor: "pointer" }}
+                    component={Link}
+                    href="/auth/register"
+                  >
+                    {NAME_TRANS_VN.DONT_HAVE_ACCOUNT}?
+                  </Typography>
+                </Stack>
+                <Box sx={{ mt: 2 }}>
+                  <Animate>
+                    <Button
+                      disableElevation
+                      disabled={!isValid || isSubmitting}
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      color="secondary"
+                      endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}
+                    >
+                      {NAME_TRANS_VN.SIGN_IN}
+                    </Button>
+                  </Animate>
+                </Box>
+                <Box sx={{ mt: 2 }}>
+                  <Animate>
+                    <Button
+                      disableElevation
+                      disabled={isSubmitting}
+                      fullWidth
+                      size="large"
+                      variant="contained"
+                      color="primary"
+                      endIcon={<>
+                        <Facebook />
+                        &nbsp;{isSubmitting && <CircularProgress color="primary" size={20} />}
+                      </>}
+                      onClick={() => signIn("github")}
+                    >
+                      {NAME_TRANS_VN.SIGN_IN_WITH_FACEBOOK}
+                    </Button>
+                  </Animate>
+                </Box>
+              </form>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
       </Animate>
     </>
   );

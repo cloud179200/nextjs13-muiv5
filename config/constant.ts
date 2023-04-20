@@ -29,6 +29,7 @@ export const USER_ROLE = {
 
 export const NAME_TRANS_VN = {
   SIGN_IN: "Đăng Nhập",
+  SIGN_IN_WITH_FACEBOOK: "Đăng Nhập Bằng Facebook",
   SIGN_UP: "Đăng Ký",
   SIGN_OUT: "Đăng Xuất",
   SETTINGS: "Cài Đặt",

@@ -38,6 +38,10 @@ const customizationReducer = createSlice({
     [actionTypes.SET_BORDER_RADIUS]: (state, action: PayloadAction<{ borderRadius: number }>) => {
       state.borderRadius = action.payload.borderRadius;
     },
+    REHYDRATE: (state, action: PayloadAction<any>) => {
+      const rehydrated = (action && action.payload && action.payload.Account) || {}
+      return { ...state, ...rehydrated }
+    },
   }
 });
 
