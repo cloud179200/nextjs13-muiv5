@@ -6,6 +6,6 @@ const nextConfig = {
   sassOptions: {
     includePaths: ["./assets/scss"],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

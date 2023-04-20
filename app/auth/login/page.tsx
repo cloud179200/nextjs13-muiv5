@@ -22,6 +22,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { signInSchema } from "../schema";
 import { NAME_TRANS_VN } from "../../../config/constant";
 import Link from "next/link";
+import Animate from "@/components/extended/AnimateButton";
+import { _sleep } from "@/utils";
 
 const SignInComponent = ({ ...others }) => {
   const theme = useTheme();
@@ -37,8 +39,10 @@ const SignInComponent = ({ ...others }) => {
       password: "",
     },
     validationSchema: signInSchema,
-    onSubmit: (values) => {
-
+    onSubmit: async (_values, formikHelpers) => {
+      formikHelpers.setSubmitting(true)
+      await _sleep(2000)
+      formikHelpers.setSubmitting(false)
     },
   });
 
@@ -50,14 +54,12 @@ const SignInComponent = ({ ...others }) => {
     isValid,
     touched,
     values,
+    isSubmitting
   } = formik;
-
-  const handleMouseDownPassword = (event: React.MouseEventHandler<HTMLButtonElement>) => {
-    return
-  };
 
   return (
     <>
+    <Animate animateWhenInView>
       <Container maxWidth="sm">
         <Grid
           container
@@ -151,7 +153,7 @@ const SignInComponent = ({ ...others }) => {
                   color="secondary"
                   sx={{ textDecoration: "none", cursor: "pointer" }}
                   component={Link}
-                  href="/forgot"
+                  href="/"
                 >
                   {NAME_TRANS_VN.FORGOT_PASSWORD}?
                 </Typography>
@@ -159,30 +161,32 @@ const SignInComponent = ({ ...others }) => {
                   color="secondary"
                   sx={{ textDecoration: "none", cursor: "pointer" }}
                   component={Link}
-                  href="/signup"
+                  href="/auth/register"
                 >
                   {NAME_TRANS_VN.DONT_HAVE_ACCOUNT}?
                 </Typography>
               </Stack>
               <Box sx={{ mt: 2 }}>
-                <Button
-                  disableElevation
-                  disabled={!isValid}
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  endIcon={<CircularProgress color="secondary" size={20} />
-                  }
-                >
-                  {NAME_TRANS_VN.SIGN_IN}
-                </Button>
+                <Animate>
+                  <Button
+                    disableElevation
+                    disabled={!isValid || isSubmitting}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                    endIcon={isSubmitting && <CircularProgress color="secondary" size={20} /> }
+                  >
+                    {NAME_TRANS_VN.SIGN_IN}
+                  </Button>
+                </Animate>
               </Box>
             </form>
           </Grid>
         </Grid>
       </Container>
+      </Animate>
     </>
   );
 };

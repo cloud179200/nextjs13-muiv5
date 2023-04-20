@@ -8,7 +8,7 @@ import componentStyleOverrides from './compStyleOverride';
 import themePalette from './palette';
 import themeTypography from './typography';
 
-export const theme = () => {
+const theme = () => {
     const color = colors;
     const customization = {
         borderRadius: 16

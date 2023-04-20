@@ -1,3 +1,48 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react/recommended",
+    "next/core-web-vitals"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "settings":{
+      "react": {
+        "version": "detect"
+      },
+      "import/resolver": {
+        "node": {
+          "paths": ["./"],
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+      }
+    }
+  },
+  "plugins": ["react", "import"],
+  "rules": {
+    "react/prop-types": "off",
+    "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
+    "import/named": 1,
+    "import/namespace": 2,
+    "import/default": 2,
+    "import/export": 2,
+    "no-debugger": "off",
+    "no-useless-catch": "off",
+    "react/no-unescaped-entities": "off",
+    "no-unreachable": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
+  }
 }
