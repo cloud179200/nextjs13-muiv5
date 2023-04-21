@@ -1,4 +1,5 @@
 {
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "node": true,
@@ -10,7 +11,9 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:react/recommended",
-    "next/core-web-vitals"
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parserOptions": {
     "sourceType": "module",
@@ -18,19 +21,19 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "settings":{
+    "settings": {
       "react": {
         "version": "detect"
       },
       "import/resolver": {
         "node": {
-          "paths": ["./"],
+          "paths": ["./*"],
           "extensions": [".js", ".jsx", ".ts", ".tsx"]
         }
       }
     }
   },
-  "plugins": ["react", "import"],
+  "plugins": ["react", "import", "@typescript-eslint"],
   "rules": {
     "react/prop-types": "off",
     "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
@@ -42,7 +45,7 @@
     "no-useless-catch": "off",
     "react/no-unescaped-entities": "off",
     "no-unreachable": "off",
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error"
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   }
 }

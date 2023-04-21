@@ -23,9 +23,8 @@ import { signInSchema } from "../schema";
 import { NAME_TRANS_VN } from "../../../config/constant";
 import Link from "next/link";
 import Animate from "@/components/extended/AnimateButton";
-import { _sleep } from "@/utils";
-import { Facebook } from "@mui/icons-material"
 import { signIn } from "next-auth/react"
+
 const SignInComponent = ({ ...others }) => {
   const theme = useTheme();
 
@@ -42,7 +41,7 @@ const SignInComponent = ({ ...others }) => {
     validationSchema: signInSchema,
     onSubmit: async (_values, formikHelpers) => {
       formikHelpers.setSubmitting(true)
-      await _sleep(2000)
+      await signIn("credentials", { ..._values })
       formikHelpers.setSubmitting(false)
     },
   });
@@ -180,25 +179,6 @@ const SignInComponent = ({ ...others }) => {
                       endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}
                     >
                       {NAME_TRANS_VN.SIGN_IN}
-                    </Button>
-                  </Animate>
-                </Box>
-                <Box sx={{ mt: 2 }}>
-                  <Animate>
-                    <Button
-                      disableElevation
-                      disabled={isSubmitting}
-                      fullWidth
-                      size="large"
-                      variant="contained"
-                      color="primary"
-                      endIcon={<>
-                        <Facebook />
-                        &nbsp;{isSubmitting && <CircularProgress color="primary" size={20} />}
-                      </>}
-                      onClick={() => signIn("github")}
-                    >
-                      {NAME_TRANS_VN.SIGN_IN_WITH_FACEBOOK}
                     </Button>
                   </Animate>
                 </Box>

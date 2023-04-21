@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
-const { Box, CircularProgress } = require("@mui/material");
-import loadingSVG from "../../assets/images/loading.svg";
+import { Box, CircularProgress } from "@mui/material";
+// import loadingSVG from "@/assets/images/loading.svg";
 
 const LoadingComponent = ({ isModal = false, height = "100vh" }) => {
   return (
@@ -14,6 +14,7 @@ const LoadingComponent = ({ isModal = false, height = "100vh" }) => {
         height: isModal ? "30vh" : height,
       }}
     >
+      {/* <img src={loadingSVG} width="20%" /> */}
       <CircularProgress color={isModal ? "secondary" : "primary"} size={40} />
     </Box>
   );
