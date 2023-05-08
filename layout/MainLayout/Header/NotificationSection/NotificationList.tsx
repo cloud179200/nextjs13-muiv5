@@ -128,7 +128,7 @@ const NotificationList = () => {
                                 borderColor: theme.palette.success.main
                             }}
                         >
-                            <TbBuildingStore stroke={"1.5"} size="1.3rem" />
+                            <TbBuildingStore stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary={<Typography variant="subtitle1">Store Verification Done</Typography>} />
@@ -167,7 +167,7 @@ const NotificationList = () => {
                                 borderColor: theme.palette.primary.main
                             }}
                         >
-                            <TbMailbox stroke={"1.5"} size="1.3rem" />
+                            <TbMailbox stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary={<Typography variant="subtitle1">Check Your Mail.</Typography>} />
@@ -188,7 +188,7 @@ const NotificationList = () => {
                     <Grid item xs={12}>
                         <Grid container>
                             <Grid item>
-                                <Button variant="contained" disableElevation endIcon={<TbBrandTelegram stroke={"1.5"} size="1.3rem" />}>
+                                <Button variant="contained" disableElevation endIcon={<TbBrandTelegram stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />}>
                                     Mail
                                 </Button>
                             </Grid>
@@ -234,7 +234,7 @@ const NotificationList = () => {
                                         <Grid container direction="column">
                                             <Grid item xs={12}>
                                                 <Stack direction="row" spacing={2}>
-                                                    <TbPhoto stroke={"1.5"} size="1.3rem" />
+                                                    <TbPhoto stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                                                     <Typography variant="subtitle1">demo.jpg</Typography>
                                                 </Stack>
                                             </Grid>

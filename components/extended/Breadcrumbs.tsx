@@ -68,7 +68,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
 
     // item separator
     const SeparatorIcon = separator;
-    const separatorIcon = separator ? <SeparatorIcon stroke={"1.5"} size="1rem" /> : <TbTallymark1 stroke={"1.5"} size="1rem" />;
+    const separatorIcon = separator ? <SeparatorIcon stroke={"currentColor"} strokeWidth={"1.5"} size="1rem" /> : <TbTallymark1 stroke={"currentColor"} strokeWidth={"1.5"} size="1rem" />;
 
     let mainContent;
     let itemContent;

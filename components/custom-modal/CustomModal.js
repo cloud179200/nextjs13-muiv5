@@ -59,7 +59,8 @@ const CustomModal = (props) => {
             <Typography variant="h4">{props.title}</Typography>
             <IconButton onClick={props.handleClose}>
               <TbX
-                stroke={1.5}
+                stroke={"currentColor"}
+                strokeWidth={"1.5"}
                 size="2rem"
                 style={{ marginTop: "auto", marginBottom: "auto" }}
               />

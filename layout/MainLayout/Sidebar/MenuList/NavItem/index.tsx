@@ -49,7 +49,7 @@ const NavItem = ({ item, level }: IProps) => {
   const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
 
   const itemIcon = item?.icon ? (
-    <item.icon stroke={"1.5"} size="1.3rem" />
+    <item.icon stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
   ) : (
     <FiberManualRecordIcon
       sx={{

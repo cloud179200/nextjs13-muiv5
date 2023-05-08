@@ -90,9 +90,9 @@ const NavCollapse = ({ menu, level }: IProps) => {
                     }
                 />
                 {open ? (
-                    <TbChevronUp stroke={"1.5"} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
+                    <TbChevronUp stroke={"currentColor"} strokeWidth={"1.5"} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
                 ) : (
-                    <TbChevronDown stroke={"1.5"} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
+                    <TbChevronDown stroke={"currentColor"} strokeWidth={"1.5"} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
                 )}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>

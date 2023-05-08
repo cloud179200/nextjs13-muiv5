@@ -37,8 +37,8 @@ const ProfileSection = () => {
   const customization = useAppSelector((state) => state.customization);
   const router = useRouter();
   // const userInfo = useAppSelector((state) => state.user.userInfo);
-  const userDetail = useAppSelector((state) => state.user.userDetail);
-  const { status } = useSession()
+  // const userDetail = useAppSelector((state) => state.user.userDetail);
+  const {data, status } = useSession()
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement | null>(null);
@@ -131,7 +131,7 @@ const ProfileSection = () => {
         }
         label={
           <TbSettings
-            stroke={"1.5"}
+            stroke={"currentColor"} strokeWidth={"1.5"}
             size="1.5rem"
             color={theme.palette.primary.main}
           />
@@ -181,7 +181,7 @@ const ProfileSection = () => {
                           variant="h4"
                           sx={{ fontWeight: 400 }}
                         >
-                          {userDetail?.first_Name + " " + userDetail?.last_Name}
+                          {data?.user?.email}
                         </Typography>
                       </Stack>
                       <Typography variant="subtitle2">
@@ -267,7 +267,7 @@ const ProfileSection = () => {
                         }
                       >
                         <ListItemIcon>
-                          <TbSettings stroke={"1.5"} size="1.3rem" />
+                          <TbSettings stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                         </ListItemIcon>
                         <ListItemText
                           primary={
@@ -285,7 +285,7 @@ const ProfileSection = () => {
                         onClick={handleLogout}
                       >
                         <ListItemIcon>
-                          <TbLogout stroke={"1.5"} size="1.3rem" />
+                          <TbLogout stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                         </ListItemIcon>
                         <ListItemText
                           primary={

@@ -70,14 +70,14 @@ const MobileSearch = ({ value, setValue, popupState }: any) => {
             placeholder="Search"
             startAdornment={
                 <InputAdornment position="start">
-                    <TbSearch stroke={"1.5"} size="1rem" color={theme.palette.grey[500]} />
+                    <TbSearch stroke={"currentColor"} strokeWidth={"1.5"} size="1rem" color={theme.palette.grey[500]} />
                 </InputAdornment>
             }
             endAdornment={
                 <InputAdornment position="end">
                     <ButtonBase sx={{ borderRadius: '12px' }}>
                         <HeaderAvatarStyle variant="rounded">
-                            <TbAdjustmentsHorizontal stroke={"1.5"} size="1.3rem" />
+                            <TbAdjustmentsHorizontal stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                         </HeaderAvatarStyle>
                     </ButtonBase>
                     <Box sx={{ ml: 2 }}>
@@ -96,7 +96,7 @@ const MobileSearch = ({ value, setValue, popupState }: any) => {
                                 }}
                                 {...bindToggle(popupState)}
                             >
-                                <TbX stroke={"1.5"} size="1.3rem" />
+                                <TbX stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                             </Avatar>
                         </ButtonBase>
                     </Box>
@@ -129,7 +129,7 @@ const SearchSection = () => {
                             <Box sx={{ ml: 2 }}>
                                 <ButtonBase sx={{ borderRadius: '12px' }}>
                                     <HeaderAvatarStyle variant="rounded" {...bindToggle(popupState)}>
-                                        <TbSearch stroke={"1.5"} size="1.2rem" />
+                                        <TbSearch stroke={"currentColor"} strokeWidth={"1.5"} size="1.2rem" />
                                     </HeaderAvatarStyle>
                                 </ButtonBase>
                             </Box>
@@ -170,14 +170,14 @@ const SearchSection = () => {
                     placeholder="Search"
                     startAdornment={
                         <InputAdornment position="start">
-                            <TbSearch stroke={"1.5"} size="1rem" color={theme.palette.grey[500]} />
+                            <TbSearch stroke={"currentColor"} strokeWidth={"1.5"} size="1rem" color={theme.palette.grey[500]} />
                         </InputAdornment>
                     }
                     endAdornment={
                         <InputAdornment position="end">
                             <ButtonBase sx={{ borderRadius: '12px' }}>
                                 <HeaderAvatarStyle variant="rounded">
-                                    <TbAdjustmentsHorizontal stroke={"1.5"} size="1.3rem" />
+                                    <TbAdjustmentsHorizontal stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                                 </HeaderAvatarStyle>
                             </ButtonBase>
                         </InputAdornment>

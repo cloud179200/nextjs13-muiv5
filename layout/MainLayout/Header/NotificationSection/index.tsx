@@ -120,7 +120,7 @@ const NotificationSection = () => {
                         onClick={handleToggle}
                         color="inherit"
                     >
-                        <TbBell stroke={"1.5"} size="1.3rem" />
+                        <TbBell stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
             </Box>

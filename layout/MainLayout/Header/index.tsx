@@ -50,7 +50,7 @@ const Header = ({ handleLeftDrawerToggle }: { handleLeftDrawerToggle: () => void
                         onClick={handleLeftDrawerToggle}
                         color="inherit"
                     >
-                        <TbMenu2 stroke={"1.5"} size="1.3rem" />
+                        <TbMenu2 stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
             </Box>
