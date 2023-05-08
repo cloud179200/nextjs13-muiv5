@@ -4,7 +4,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from "../config/themes";
 import { Provider } from "react-redux";
 import { store } from "@/redux";
-import { SessionProvider } from "next-auth/react";
+import { Toaster } from 'react-hot-toast';
 
 export default function RootLayout({ children }: { children?: React.ReactNode }) {
   return (
@@ -17,9 +17,10 @@ export default function RootLayout({ children }: { children?: React.ReactNode })
       <Provider store={store}>
         <ThemeProvider theme={theme()}>
           <CssBaseline />
-          <SessionProvider>
-            <body>{children}</body>
-          </SessionProvider>
+          <body>
+            <Toaster />
+            {children}
+          </body>
         </ThemeProvider>
       </Provider>
     </html>

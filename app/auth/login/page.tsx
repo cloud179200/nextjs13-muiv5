@@ -24,9 +24,12 @@ import { NAME_TRANS_VN } from "../../../config/constant";
 import Link from "next/link";
 import Animate from "@/components/extended/AnimateButton";
 import { signIn } from "next-auth/react"
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const SignInComponent = ({ ...others }) => {
   const theme = useTheme();
+  const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -40,9 +43,23 @@ const SignInComponent = ({ ...others }) => {
     },
     validationSchema: signInSchema,
     onSubmit: async (_values, formikHelpers) => {
+      console.log({ _values })
       formikHelpers.setSubmitting(true)
-      await signIn("credentials", { ..._values })
+      const result = await signIn("credentials", {
+        redirect: false,
+        ..._values,
+      })
       formikHelpers.setSubmitting(false)
+      if(!result){
+        toast.error("Error");
+        return 
+      }
+      const { ok, error } = result
+      if (ok) {
+        router.push("/user");
+      } else {
+        toast.error(error || "");
+      }
     },
   });
 

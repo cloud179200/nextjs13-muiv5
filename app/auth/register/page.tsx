@@ -26,11 +26,14 @@ import { signUpSchema } from "../schema";
 import { NAME_TRANS_VN } from "@/config/constant";
 import { strengthColor, strengthIndicator } from "@/utils/password-strength";
 import Link from "next/link";
-import { _sleep } from "@/utils";
 import Animate from "@/components/extended/AnimateButton";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const SignUpComponent = ({ ...others }) => {
   const theme = useTheme();
+  const router = useRouter();
+
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -52,8 +55,29 @@ const SignUpComponent = ({ ...others }) => {
     validationSchema: signUpSchema,
     onSubmit: async (_values, formikHelpers) => {
       formikHelpers.setSubmitting(true)
-      await _sleep(1000)
+      const result = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: _values.email,
+          password: _values.password,
+        }),
+      })
       formikHelpers.setSubmitting(false)
+      if (!result) {
+        toast.error("Error");
+        return
+      }
+      if (result.status === 200) {
+        toast.success("Account created! Redirecting to login...");
+        setTimeout(() => {
+          router.push("/auth/login");
+        }, 2000);
+      } else {
+        toast.error(await result.text());
+      }
     },
   });
 
@@ -64,7 +88,8 @@ const SignUpComponent = ({ ...others }) => {
     isValid,
     touched,
     values,
-    isSubmitting
+    isSubmitting,
+    handleSubmit
   } = formik;
 
   const handleClickShowPassword = () => {
@@ -125,7 +150,7 @@ const SignUpComponent = ({ ...others }) => {
                 </Grid>
               </Grid>
 
-              <form noValidate {...others}>
+              <form noValidate onSubmit={handleSubmit} {...others}>
                 <Grid container spacing={matchDownSM ? 0 : 2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -374,6 +399,7 @@ const SignUpComponent = ({ ...others }) => {
                     disabled={!isValid || isSubmitting}
                     fullWidth
                     size="large"
+                    type="submit"
                     variant="contained"
                     color="secondary"
                     endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}

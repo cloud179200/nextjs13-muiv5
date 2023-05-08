@@ -11,5 +11,4 @@ export const getHashString = async (plainText: string) => {
 export const compareHashString = async (plainText: string, hashString: string) => {
   const result = await bcrypt.compare(plainText, hashString);
   return Boolean(result)
-
 }
