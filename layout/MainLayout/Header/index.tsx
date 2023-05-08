@@ -15,7 +15,7 @@ import { TbMenu2 } from 'react-icons/tb';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
-const Header = ({ handleLeftDrawerToggle }: { handleLeftDrawerToggle: () => void }) => {
+const Header = ({ handleLeftDrawerToggle }: { handleLeftDrawerToggle: any }) => {
     const theme = useTheme();
 
     return (

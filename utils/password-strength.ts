@@ -13,7 +13,7 @@ const hasMixed = (str: string) => new RegExp(/[a-z]/).test(str) && new RegExp(/[
 const hasSpecial = (str: string) => new RegExp(/[!#@$%^&*)(+=._-]/).test(str);
 
 // set color based on password strength
-export const strengthColor: (count: number) => { label: string, color: string } = (count) => {
+export const strengthColor = (count: number) => {
     if (count < 2) return { label: 'Kém', color: value.errorMain };
     if (count < 3) return { label: 'Yếu', color: value.warningDark };
     if (count < 4) return { label: 'Bình Thường', color: value.orangeMain };

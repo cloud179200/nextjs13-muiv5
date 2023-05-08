@@ -8,11 +8,14 @@ import { List, Typography } from '@mui/material';
 // project imports
 import NavItem from '../NavItem';
 import NavCollapse from '../NavCollapse';
+import { IListMenu } from '../../../../../config/menu-items/index';
 
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
-
-const NavGroup = ({ item }) => {
-    const theme = useTheme();
+interface IProps {
+    item: IListMenu
+}
+const NavGroup = ({ item }: IProps) => {
+    const theme: any = useTheme();
 
     // menu list collapse & items
     const items = item.children?.map((menu) => {
