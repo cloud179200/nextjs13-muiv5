@@ -1,5 +1,5 @@
+"use client"
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -15,8 +15,12 @@ import LogoSection from '../LogoSection';
 import { drawerWidth } from '../../../redux/customization/constant';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
-
-const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
+interface IProps {
+    drawerOpen: boolean,
+    drawerToggle: () => void,
+    window?: any 
+}
+const Sidebar = ({ drawerOpen, drawerToggle, window }: IProps) => {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -75,12 +79,6 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             </Drawer>
         </Box>
     );
-};
-
-Sidebar.propTypes = {
-    drawerOpen: PropTypes.bool,
-    drawerToggle: PropTypes.func,
-    window: PropTypes.object
 };
 
 export default Sidebar;

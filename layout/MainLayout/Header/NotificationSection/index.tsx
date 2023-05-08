@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -25,12 +25,12 @@ import {
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import MainCard from '../../../../components/cards/MainCard';
-import Transitions from '../../../../components/extended/Transitions';
+import MainCard from '@/components/cards/MainCard';
+import Transitions from '@/components/extended/Transitions';
 import NotificationList from './NotificationList';
 
 // assets
-import { IconBell } from '@tabler/icons';
+import { TbBell } from 'react-icons/tb';
 
 // notification status options
 const status = [
@@ -63,28 +63,29 @@ const NotificationSection = () => {
     /**
      * anchorRef is used on different componets and specifying one type leads to other components throwing an error
      * */
-    const anchorRef = useRef(null);
+    const anchorRef = useRef<HTMLDivElement | null>(null);
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
 
-    const handleClose = (event) => {
-        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+    const handleClose = (event: any) => {
+        if (event?.target && anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
         setOpen(false);
     };
 
     const prevOpen = useRef(open);
+    
     useEffect(() => {
-        if (prevOpen.current === true && open === false) {
+        if (anchorRef.current && prevOpen.current === true && open === false) {
             anchorRef.current.focus();
         }
         prevOpen.current = open;
     }, [open]);
 
-    const handleChange = (event) => {
+    const handleChange = (event: any) => {
         if (event?.target.value) setValue(event?.target.value);
     };
 
@@ -119,7 +120,7 @@ const NotificationSection = () => {
                         onClick={handleToggle}
                         color="inherit"
                     >
-                        <IconBell stroke={1.5} size="1.3rem" />
+                        <TbBell stroke={"1.5"} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
             </Box>
@@ -163,7 +164,7 @@ const NotificationSection = () => {
                                                     </Stack>
                                                 </Grid>
                                                 <Grid item>
-                                                    <Typography component={Link} to="#" variant="subtitle2" color="primary">
+                                                    <Typography component={Link} href="#" variant="subtitle2" color="primary">
                                                         Mark as all read
                                                     </Typography>
                                                 </Grid>

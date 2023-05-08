@@ -19,8 +19,8 @@ import {
 } from '@mui/material';
 
 // assets
-import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons';
-import WangBinh from '../../../../assets/images/users/gentleman.png';
+import { TbBrandTelegram, TbBuildingStore, TbMailbox, TbPhoto } from 'react-icons/tb';
+import WangBinh from '@/assets/images/users/gentleman.png';
 
 // styles
 const ListItemWrapper = styled('div')(({ theme }) => ({
@@ -37,7 +37,7 @@ const ListItemWrapper = styled('div')(({ theme }) => ({
 // ==============================|| NOTIFICATION LIST ITEM ||============================== //
 
 const NotificationList = () => {
-    const theme = useTheme();
+    const theme: any = useTheme();
 
     const chipSX = {
         height: 24,
@@ -87,7 +87,7 @@ const NotificationList = () => {
             <ListItemWrapper>
                 <ListItem alignItems="center">
                     <ListItemAvatar>
-                        <Avatar alt="nguoi wangbinh" src={WangBinh} />
+                        <Avatar alt="nguoi wangbinh" src={WangBinh.src} />
                     </ListItemAvatar>
                     <ListItemText primary="nguoi wangbinh" />
                     <ListItemSecondaryAction>
@@ -128,7 +128,7 @@ const NotificationList = () => {
                                 borderColor: theme.palette.success.main
                             }}
                         >
-                            <IconBuildingStore stroke={1.5} size="1.3rem" />
+                            <TbBuildingStore stroke={"1.5"} size="1.3rem" />
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary={<Typography variant="subtitle1">Store Verification Done</Typography>} />
@@ -167,7 +167,7 @@ const NotificationList = () => {
                                 borderColor: theme.palette.primary.main
                             }}
                         >
-                            <IconMailbox stroke={1.5} size="1.3rem" />
+                            <TbMailbox stroke={"1.5"} size="1.3rem" />
                         </Avatar>
                     </ListItemAvatar>
                     <ListItemText primary={<Typography variant="subtitle1">Check Your Mail.</Typography>} />
@@ -188,7 +188,7 @@ const NotificationList = () => {
                     <Grid item xs={12}>
                         <Grid container>
                             <Grid item>
-                                <Button variant="contained" disableElevation endIcon={<IconBrandTelegram stroke={1.5} size="1.3rem" />}>
+                                <Button variant="contained" disableElevation endIcon={<TbBrandTelegram stroke={"1.5"} size="1.3rem" />}>
                                     Mail
                                 </Button>
                             </Grid>
@@ -200,7 +200,7 @@ const NotificationList = () => {
             <ListItemWrapper>
                 <ListItem alignItems="center">
                     <ListItemAvatar>
-                        <Avatar alt="nguoi wangbinh" src={WangBinh} />
+                        <Avatar alt="nguoi wangbinh" src={WangBinh.src} />
                     </ListItemAvatar>
                     <ListItemText primary={<Typography variant="subtitle1">nguoi wangbinh</Typography>} />
                     <ListItemSecondaryAction>
@@ -234,7 +234,7 @@ const NotificationList = () => {
                                         <Grid container direction="column">
                                             <Grid item xs={12}>
                                                 <Stack direction="row" spacing={2}>
-                                                    <IconPhoto stroke={1.5} size="1.3rem" />
+                                                    <TbPhoto stroke={"1.5"} size="1.3rem" />
                                                     <Typography variant="subtitle1">demo.jpg</Typography>
                                                 </Stack>
                                             </Grid>
@@ -250,7 +250,7 @@ const NotificationList = () => {
             <ListItemWrapper>
                 <ListItem alignItems="center">
                     <ListItemAvatar>
-                        <Avatar alt="nguoi wangbinh" src={WangBinh} />
+                        <Avatar alt="nguoi wangbinh" src={WangBinh.src} />
                     </ListItemAvatar>
                     <ListItemText primary={<Typography variant="subtitle1">nguoi wangbinh</Typography>} />
                     <ListItemSecondaryAction>

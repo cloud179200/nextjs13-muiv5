@@ -13,7 +13,7 @@ import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 import Transitions from '../../../../components/extended/Transitions';
 
 // assets
-import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
+import { TbAdjustmentsHorizontal, TbSearch, TbX } from 'react-icons/tb';
 import { shouldForwardProp } from '@mui/system';
 
 // styles
@@ -59,8 +59,8 @@ const HeaderAvatarStyle = styled(Avatar, { shouldForwardProp })(({ theme }) => (
 
 // ==============================|| SEARCH INPUT - MOBILE||============================== //
 
-const MobileSearch = ({ value, setValue, popupState }) => {
-    const theme = useTheme();
+const MobileSearch = ({ value, setValue, popupState }: any) => {
+    const theme: any = useTheme();
 
     return (
         <OutlineInputStyle
@@ -70,14 +70,14 @@ const MobileSearch = ({ value, setValue, popupState }) => {
             placeholder="Search"
             startAdornment={
                 <InputAdornment position="start">
-                    <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
+                    <TbSearch stroke={"1.5"} size="1rem" color={theme.palette.grey[500]} />
                 </InputAdornment>
             }
             endAdornment={
                 <InputAdornment position="end">
                     <ButtonBase sx={{ borderRadius: '12px' }}>
                         <HeaderAvatarStyle variant="rounded">
-                            <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+                            <TbAdjustmentsHorizontal stroke={"1.5"} size="1.3rem" />
                         </HeaderAvatarStyle>
                     </ButtonBase>
                     <Box sx={{ ml: 2 }}>
@@ -96,7 +96,7 @@ const MobileSearch = ({ value, setValue, popupState }) => {
                                 }}
                                 {...bindToggle(popupState)}
                             >
-                                <IconX stroke={1.5} size="1.3rem" />
+                                <TbX stroke={"1.5"} size="1.3rem" />
                             </Avatar>
                         </ButtonBase>
                     </Box>
@@ -124,12 +124,12 @@ const SearchSection = () => {
         <>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 <PopupState variant="popper" popupId="demo-popup-popper">
-                    {(popupState) => (
+                    {(popupState: any) => (
                         <>
                             <Box sx={{ ml: 2 }}>
                                 <ButtonBase sx={{ borderRadius: '12px' }}>
                                     <HeaderAvatarStyle variant="rounded" {...bindToggle(popupState)}>
-                                        <IconSearch stroke={1.5} size="1.2rem" />
+                                        <TbSearch stroke={"1.5"} size="1.2rem" />
                                     </HeaderAvatarStyle>
                                 </ButtonBase>
                             </Box>
@@ -170,14 +170,14 @@ const SearchSection = () => {
                     placeholder="Search"
                     startAdornment={
                         <InputAdornment position="start">
-                            <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
+                            <TbSearch stroke={"1.5"} size="1rem" color={theme.palette.grey[500]} />
                         </InputAdornment>
                     }
                     endAdornment={
                         <InputAdornment position="end">
                             <ButtonBase sx={{ borderRadius: '12px' }}>
                                 <HeaderAvatarStyle variant="rounded">
-                                    <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+                                    <TbAdjustmentsHorizontal stroke={"1.5"} size="1.3rem" />
                                 </HeaderAvatarStyle>
                             </ButtonBase>
                         </InputAdornment>

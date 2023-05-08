@@ -1,8 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
 // material-ui
 import { useTheme } from "@mui/material/styles";
 import {
@@ -22,47 +19,52 @@ import {
 } from "@mui/material";
 
 // project imports
-import MainCard from "../../../../components/cards/MainCard";
-import Transitions from "../../../../components/extended/Transitions";
-import WangBinh from "../../../../assets/images/users/gentleman.png";
+import MainCard from "@/components/cards/MainCard";
+import Transitions from "@/components/extended/Transitions";
+import WangBinh from "@/assets/images/users/gentleman.png";
 
 // assets
-import { IconLogout, IconSettings } from "@tabler/icons";
-import { signOutAction } from "../../../../redux/auth/operators";
+import { TbLogout, TbSettings } from "react-icons/tb";
 import moment from "moment/moment";
-import { USER_ROLE, NAME_TRANS_VN } from "../../../../config/constant";
-
+import { NAME_TRANS_VN, NEXT_AUTH_STATUS } from "@/config/constant";
+import { useAppSelector } from "@/redux";
+import { signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation";
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.user.userInfo);
-  const userDetail = useSelector((state) => state.user.userDetail);
-
+  const customization = useAppSelector((state) => state.customization);
+  const router = useRouter();
+  // const userInfo = useAppSelector((state) => state.user.userInfo);
+  const userDetail = useAppSelector((state) => state.user.userDetail);
+  const { status } = useSession()
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
-  const anchorRef = useRef(null);
+  const anchorRef = useRef<HTMLDivElement | null>(null);
 
   const handleLogout = async () => {
-    userInfo?.email && dispatch(signOutAction(userInfo?.email));
+    if (status === NEXT_AUTH_STATUS.AUTHENTICATED) {
+      await signOut({ redirect: false, callbackUrl: '/' })
+      // router.replace("/auth/login")
+    }
+    return
+    // userInfo?.email && dispatch(signOutAction(userInfo?.email));
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: any) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
     setOpen(false);
   };
 
-  const handleListItemClick = (event, index, route = "") => {
+  const handleListItemClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number, route = "") => {
     setSelectedIndex(index);
     handleClose(event);
 
     if (route && route !== "") {
-      history.push(route);
+      router.push(route);
     }
   };
   const handleToggle = () => {
@@ -70,7 +72,7 @@ const ProfileSection = () => {
   };
 
   const helloContent = useMemo(() => {
-    const currentHour = moment().format("HH");
+    const currentHour = parseFloat(moment().format("HH"));
     if (currentHour >= 3 && currentHour < 12) {
       return "Good Morning";
     } else if (currentHour >= 12 && currentHour < 15) {
@@ -83,7 +85,7 @@ const ProfileSection = () => {
 
   const prevOpen = useRef(open);
   useEffect(() => {
-    if (prevOpen.current === true && open === false) {
+    if (anchorRef.current && prevOpen.current === true && open === false) {
       anchorRef.current.focus();
     }
 
@@ -114,11 +116,12 @@ const ProfileSection = () => {
         }}
         icon={
           <Avatar
-            src={WangBinh}
+            src={WangBinh.src}
             sx={{
               ...theme.typography.mediumAvatar,
               margin: "8px 0 8px 8px !important",
-              cursor: "pointer",
+              cursor: "pointer"
+
             }}
             ref={anchorRef}
             aria-controls={open ? "menu-list-grow" : undefined}
@@ -127,8 +130,8 @@ const ProfileSection = () => {
           />
         }
         label={
-          <IconSettings
-            stroke={1.5}
+          <TbSettings
+            stroke={"1.5"}
             size="1.5rem"
             color={theme.palette.primary.main}
           />
@@ -182,7 +185,7 @@ const ProfileSection = () => {
                         </Typography>
                       </Stack>
                       <Typography variant="subtitle2">
-                        {NAME_TRANS_VN[USER_ROLE[userDetail?.user_Type || 1].toUpperCase()]}
+                        {/* {NAME_TRANS_VN[USER_ROLE[userDetail?.user_Type || 1].toUpperCase()]} */}
                       </Typography>
                     </Stack>
                   </Box>
@@ -264,7 +267,7 @@ const ProfileSection = () => {
                         }
                       >
                         <ListItemIcon>
-                          <IconSettings stroke={1.5} size="1.3rem" />
+                          <TbSettings stroke={"1.5"} size="1.3rem" />
                         </ListItemIcon>
                         <ListItemText
                           primary={
@@ -282,7 +285,7 @@ const ProfileSection = () => {
                         onClick={handleLogout}
                       >
                         <ListItemIcon>
-                          <IconLogout stroke={1.5} size="1.3rem" />
+                          <TbLogout stroke={"1.5"} size="1.3rem" />
                         </ListItemIcon>
                         <ListItemText
                           primary={

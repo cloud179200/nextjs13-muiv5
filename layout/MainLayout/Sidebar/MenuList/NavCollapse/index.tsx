@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -11,16 +10,22 @@ import NavItem from '../NavItem';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { IconChevronDown, IconChevronUp } from '@tabler/icons';
+import { TbChevronDown, TbChevronUp } from 'react-icons/tb';
+import {IListMenu, IListMenuChildren } from '@/config/menu-items';
+import { useAppSelector } from '@/redux';
 
 // ==============================|| SIDEBAR MENU LIST COLLAPSE ITEMS ||============================== //
-
-const NavCollapse = ({ menu, level }) => {
-    const theme = useTheme();
-    const customization = useSelector((state) => state.customization);
+interface IProps {
+    menu: IListMenu,
+    level: number,
+    children?: React.ReactNode
+}
+const NavCollapse = ({ menu, level }: IProps) => {
+    const theme: any = useTheme();
+    const customization = useAppSelector((state) => state.customization);
 
     const [open, setOpen] = useState(false);
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState<string | null>(null);
 
     const handleClick = () => {
         setOpen(!open);
@@ -28,7 +33,7 @@ const NavCollapse = ({ menu, level }) => {
     };
 
     // menu collapse & item
-    const menus = menu.children?.map((item) => {
+    const menus = menu.children?.map((item: IListMenuChildren) => {
         switch (item.type) {
             case 'collapse':
                 return <NavCollapse key={item.id} menu={item} level={level + 1} />;
@@ -43,9 +48,8 @@ const NavCollapse = ({ menu, level }) => {
         }
     });
 
-    const Icon = menu.icon;
     const menuIcon = menu.icon ? (
-        <Icon strokeWidth={1.5} size="1.3rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
+        <menu.icon strokeWidth={1.5} size="1.3rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
     ) : (
         <FiberManualRecordIcon
             sx={{
@@ -86,9 +90,9 @@ const NavCollapse = ({ menu, level }) => {
                     }
                 />
                 {open ? (
-                    <IconChevronUp stroke={1.5} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
+                    <TbChevronUp stroke={"1.5"} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
                 ) : (
-                    <IconChevronDown stroke={1.5} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
+                    <TbChevronDown stroke={"1.5"} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
                 )}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>

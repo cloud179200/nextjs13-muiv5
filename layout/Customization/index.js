@@ -16,19 +16,19 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { IconSettings } from "@tabler/icons";
+import { TbSettings } from "react-icons/tb";
 
 // third-party
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
-import SubCard from "../../components/cards/SubCard";
+import SubCard from "@/components/cards/SubCard";
 import {
   SET_BORDER_RADIUS,
   SET_FONT_FAMILY,
-} from "../../redux/customization/actions";
-import { gridSpacing } from "../../redux/customization/constant";
-import AnimateButton from "../../components/extended/Animate";
+} from "@/redux/customization/actions";
+import { gridSpacing } from "@/redux/customization/constant";
+import AnimateButton from "@/components/extended/AnimateButton";
 
 // concat 'px'
 function valueText(value) {
@@ -121,7 +121,7 @@ const Customization = () => {
         >
           <AnimateButton type="rotate">
             <IconButton color="inherit" size="large" disableRipple>
-              <IconSettings />
+              <TbSettings />
             </IconButton>
           </AnimateButton>
         </Fab>

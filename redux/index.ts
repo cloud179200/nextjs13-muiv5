@@ -8,6 +8,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore, persis
 import storage from "redux-persist/lib/storage";
 
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 
 interface IReducer {
@@ -44,3 +45,8 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<IReducer> = useSelector

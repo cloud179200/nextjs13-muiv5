@@ -1,6 +1,6 @@
+"use client"
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled, useTheme, Theme } from "@mui/material/styles";
 import {
   AppBar,
   Backdrop,
@@ -14,8 +14,10 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 // import Customization from "../Customization";
 import { drawerWidth } from "@/config/constant";
+import { SET_MENU } from "@/redux/customization/actions";
+import { useAppDispatch, useAppSelector } from "@/redux";
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
+  ({ theme, open }: {theme: Theme, open: boolean}) => ({
     ...theme.typography.mainContent,
     ...(!open && {
       transition: theme.transitions.create("margin", {
@@ -57,20 +59,20 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const MainLayout = (props) => {
-  const loadingCommon = useSelector((state) => state.common.loadingCommon);
+const MainLayout = (props: { children: React.ReactNode }) => {
+  const dispatch = useAppDispatch();
+  const loadingCommon = useAppSelector((state) => state.common.loadingCommon);
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("lg"));
 
   // Handle left drawer
-  const leftDrawerOpened = useSelector((state) => state.customization.opened);
-  const dispatch = useDispatch();
+  const leftDrawerOpened = useAppSelector((state) => state.customization.opened);
   const handleLeftDrawerToggle = () => {
-    // dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
+    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
 
   useEffect(() => {
-    // dispatch({ type: SET_MENU, opened: !matchDownMd });
+    dispatch({ type: SET_MENU, opened: !matchDownMd });
   }, [matchDownMd]);
 
   return (
@@ -106,7 +108,7 @@ const MainLayout = (props) => {
         theme={theme}
         open={leftDrawerOpened}
         style={{
-          marginLeft: leftDrawerOpened ? "20px" : null,
+          marginLeft: leftDrawerOpened ? "20px" : "",
           overflow: "auto",
         }}
       >

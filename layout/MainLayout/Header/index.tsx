@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -12,11 +11,11 @@ import ProfileSection from './ProfileSection';
 // import NotificationSection from './NotificationSection';
 
 // assets
-import { IconMenu2 } from '@tabler/icons';
+import { TbMenu2 } from 'react-icons/tb';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
-const Header = ({ handleLeftDrawerToggle }) => {
+const Header = ({ handleLeftDrawerToggle }: { handleLeftDrawerToggle: () => void }) => {
     const theme = useTheme();
 
     return (
@@ -51,7 +50,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
                         onClick={handleLeftDrawerToggle}
                         color="inherit"
                     >
-                        <IconMenu2 stroke={1.5} size="1.3rem" />
+                        <TbMenu2 stroke={"1.5"} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
             </Box>
@@ -66,10 +65,6 @@ const Header = ({ handleLeftDrawerToggle }) => {
             <ProfileSection />
         </>
     );
-};
-
-Header.propTypes = {
-    handleLeftDrawerToggle: PropTypes.func
 };
 
 export default Header;

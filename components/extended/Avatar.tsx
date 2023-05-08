@@ -1,14 +1,24 @@
 import React from 'react';
-import PropTypes from "prop-types";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import MuiAvatar from "@mui/material/Avatar";
+import MuiAvatar, { AvatarProps } from "@mui/material/Avatar";
 
+interface IProps extends AvatarProps {
+  className?: string;
+  color?: string;
+  outline?: boolean;
+  size?: string;
+  sx?: object;
+  children?: React.ReactNode;
+  component?: any;
+  href?: string;
+  target?: string;
+}
 // ==============================|| AVATAR ||============================== //
 
-const Avatar = ({ color, outline, size, sx, ...others }) => {
-  const theme = useTheme();
+const Avatar = ({ color, outline, size, sx, ...others }: IProps) => {
+  const theme: any = useTheme();
 
   const colorSX = color &&
     !outline && {
@@ -69,14 +79,6 @@ const Avatar = ({ color, outline, size, sx, ...others }) => {
       {...others}
     />
   );
-};
-
-Avatar.propTypes = {
-  className: PropTypes.string,
-  color: PropTypes.string,
-  outline: PropTypes.bool,
-  size: PropTypes.string,
-  sx: PropTypes.object,
 };
 
 export default Avatar;

@@ -1,14 +1,22 @@
-import PropTypes from 'prop-types';
-import { forwardRef } from 'react';
+import React, { forwardRef} from "react";
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
-
+interface IProps {
+    children?: React.ReactNode;
+    content?: boolean;
+    contentClass?: string;
+    darkTitle?: boolean;
+    secondary: React.ReactNode;
+    sx?: object;
+    contentSX?: object;
+    title: React.ReactNode;
+  }
 // ==============================|| CUSTOM SUB CARD ||============================== //
 
-const SubCard = forwardRef(({ children, content, contentClass, darkTitle, secondary, sx = {}, contentSX = {}, title, ...others }, ref) => {
-    const theme = useTheme();
+const SubCard = forwardRef(({ children, content = true, contentClass, darkTitle, secondary, sx = {}, contentSX = {}, title, ...others }: IProps, ref: React.ForwardedRef<any>) => {
+    const theme: any = useTheme();
 
     return (
         <Card
@@ -47,20 +55,6 @@ const SubCard = forwardRef(({ children, content, contentClass, darkTitle, second
         </Card>
     );
 });
-
-SubCard.propTypes = {
-    children: PropTypes.node,
-    content: PropTypes.bool,
-    contentClass: PropTypes.string,
-    darkTitle: PropTypes.bool,
-    secondary: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
-    sx: PropTypes.object,
-    contentSX: PropTypes.object,
-    title: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object])
-};
-
-SubCard.defaultProps = {
-    content: true
-};
+SubCard.displayName = "SubCard";
 
 export default SubCard;

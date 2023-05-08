@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -11,7 +11,7 @@ import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 import { gridSpacing } from '../../redux/customization/constant';
 
 // assets
-import { IconTallymark1 } from '@tabler/icons';
+import { TbTallymark1 } from 'react-icons/tb';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
@@ -68,7 +68,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
 
     // item separator
     const SeparatorIcon = separator;
-    const separatorIcon = separator ? <SeparatorIcon stroke={1.5} size="1rem" /> : <IconTallymark1 stroke={1.5} size="1rem" />;
+    const separatorIcon = separator ? <SeparatorIcon stroke={"1.5"} size="1rem" /> : <TbTallymark1 stroke={"1.5"} size="1rem" />;
 
     let mainContent;
     let itemContent;
@@ -81,7 +81,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
     if (main && main.type === 'collapse') {
         CollapseIcon = main.icon ? main.icon : AccountTreeTwoToneIcon;
         mainContent = (
-            <Typography component={Link} to="#" variant="subtitle1" sx={linkSX}>
+            <Typography component={Link} href="#" variant="subtitle1" sx={linkSX}>
                 {icons && <CollapseIcon style={iconStyle} />}
                 {main.title}
             </Typography>

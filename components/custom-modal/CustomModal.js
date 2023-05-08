@@ -12,7 +12,7 @@ import {
   CssBaseline,
 } from "@mui/material";
 import CustomBox from "../custom-box/CustomBox";
-import { IconX } from "@tabler/icons";
+import { TbX } from "react-icons/tb";
 
 const CustomModal = (props) => {
   const theme = useTheme();
@@ -58,7 +58,7 @@ const CustomModal = (props) => {
           >
             <Typography variant="h4">{props.title}</Typography>
             <IconButton onClick={props.handleClose}>
-              <IconX
+              <TbX
                 stroke={1.5}
                 size="2rem"
                 style={{ marginTop: "auto", marginBottom: "auto" }}

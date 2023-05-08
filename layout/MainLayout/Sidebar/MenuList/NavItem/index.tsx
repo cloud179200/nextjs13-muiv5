@@ -1,8 +1,8 @@
+/* eslint-disable react/display-name */
 import React, { forwardRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -10,6 +10,7 @@ import {
   Avatar,
   Chip,
   ListItemButton,
+  ListItemButtonProps,
   ListItemIcon,
   ListItemText,
   Typography,
@@ -25,25 +26,30 @@ import {
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import Animate from "../../../../../components/extended/AnimateButton";
+import { IListMenuChildren } from "@/config/menu-items";
+import { useAppDispatch, useAppSelector } from "@/redux";
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
+interface IProps {
+  item: IListMenuChildren,
+  level: number,
+  children?: React.ReactNode
+}
 
-const NavItem = ({ item, level }) => {
+const NavItem = ({ item, level }: IProps) => {
   const [itemTarget, setItemTarget] = useState("_self");
-  const [listItemProps, setListItemProps] = useState({
-    // eslint-disable-next-line react/display-name
-    component: forwardRef((props, ref) => (
-      <Link ref={ref} {...props} to={item.url} target={itemTarget} />
+  const [listItemProps, setListItemProps] = useState<ListItemButtonProps>({
+    LinkComponent: forwardRef((props, ref: React.Ref<HTMLAnchorElement>) => (
+      <Link ref={ref} {...props} href={item.url} target={itemTarget} />
     )),
   });
   const theme = useTheme();
-  const dispatch = useDispatch();
-  const customization = useSelector((state) => state.customization);
+  const dispatch = useAppDispatch();
+  const customization = useAppSelector((state) => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const Icon = item.icon;
   const itemIcon = item?.icon ? (
-    <Icon stroke={1.5} size="1.3rem" />
+    <item.icon stroke={"1.5"} size="1.3rem" />
   ) : (
     <FiberManualRecordIcon
       sx={{
@@ -56,15 +62,19 @@ const NavItem = ({ item, level }) => {
     />
   );
 
-  if (item.target) {
+  if (item?.target) {
     setItemTarget("_blank");
   }
 
   if (item?.external) {
-    setListItemProps({ component: "a", href: item.url, target: itemTarget });
+    setListItemProps({
+      LinkComponent: forwardRef((props, ref: React.Ref<HTMLAnchorElement>) => (
+        <Link ref={ref} {...props} href={item.url} target={itemTarget} />
+      ))
+    });
   }
 
-  const itemHandler = (id) => {
+  const itemHandler = (id: string) => {
     dispatch({ type: MENU_OPEN, id });
     if (matchesSM) dispatch({ type: SET_MENU, opened: false });
   };
