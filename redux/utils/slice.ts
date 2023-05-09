@@ -20,18 +20,18 @@ const initialState: IUtilsState = {
   loading: false,
   loadingCommon: false,
 }
-const customizationReducer = createSlice({
-  name: "customization",
+
+const commonReducer = createSlice({
+  name: "common",
   initialState: _.clone(initialState),
   reducers: {
-    [actionTypes.RESET_UTILS_REDUCER_ACTION]: (state) => {
-      // eslint-disable-next-line no-unused-vars
-      state = _.clone(initialState)
+    [actionTypes.RESET_UTILS_REDUCER_ACTION]: (_state) => {
+      _state = _.clone(initialState)
     },
-    [actionTypes.SET_LOADING_ACTION]: (state, action: PayloadAction<any>) => {
+    [actionTypes.SET_LOADING_ACTION]: (state, action: PayloadAction<{ state: boolean }>) => {
       state.loading = action.payload.state;
     },
-    [actionTypes.SET_LOADING_COMMON_ACTION]: (state, action: PayloadAction<any>) => {
+    [actionTypes.SET_LOADING_COMMON_ACTION]: (state, action: PayloadAction<{ state: boolean }>) => {
       state.loadingCommon = action.payload.state;
     },
     REHYDRATE: (state, action: PayloadAction<any>) => {
@@ -41,4 +41,6 @@ const customizationReducer = createSlice({
   }
 });
 
-export default customizationReducer.reducer;
+export const utilsActions = commonReducer.actions;
+
+export default commonReducer.reducer;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { useAppSelector } from "@/redux";
+import { useAppSelector } from "@/redux/hooks";
 
 const CustomBox = (props: any) => {
   const customization = useAppSelector((state) => state.customization);

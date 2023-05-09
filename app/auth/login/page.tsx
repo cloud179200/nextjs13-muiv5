@@ -56,7 +56,7 @@ const SignInComponent = ({ ...others }) => {
       }
       const { ok, error } = result
       if (ok) {
-        router.push("/protected");
+        router.push("/dashboard");
       } else {
         toast.error(error || "");
       }

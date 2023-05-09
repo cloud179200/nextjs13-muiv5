@@ -21,9 +21,8 @@ const customizationReducer = createSlice({
   name: "customization",
   initialState: _.clone(initialState),
   reducers: {
-    [actionTypes.RESET_CUSTOMIZATION_REDUCER_ACTION]: (state) => {
-      // eslint-disable-next-line no-unused-vars
-      state = _.clone(initialState)
+    [actionTypes.RESET_CUSTOMIZATION_REDUCER_ACTION]: (_state) => {
+      _state = _.clone(initialState)
     },
     [actionTypes.MENU_OPEN]: (state, action: PayloadAction<{ id: string }>) => {
       const id = action.payload.id;
@@ -44,5 +43,7 @@ const customizationReducer = createSlice({
     },
   }
 });
+
+export const customizationActions = customizationReducer.actions;
 
 export default customizationReducer.reducer;

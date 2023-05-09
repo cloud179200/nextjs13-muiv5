@@ -1,9 +1,13 @@
 "use client"
 import React from "react";
 import { Box, CircularProgress } from "@mui/material";
-// import loadingSVG from "@/assets/images/loading.svg";
+import loadingSVG from "@/assets/images/loading.svg";
+// import Image from "next/image";
+import { NEXT_AUTH_STATUS } from '../../config/constant';
+import { useSession } from "next-auth/react";
 
 const LoadingComponent = ({ isModal = false, height = "100vh" }) => {
+  const { status } = useSession()
   return (
     <Box
       sx={{
@@ -14,8 +18,11 @@ const LoadingComponent = ({ isModal = false, height = "100vh" }) => {
         height: isModal ? "30vh" : height,
       }}
     >
-      {/* <img src={loadingSVG} width="20%" /> */}
-      <CircularProgress color={isModal ? "secondary" : "primary"} size={40} />
+      {status === NEXT_AUTH_STATUS.AUTHENTICATED ? (
+        <CircularProgress color={isModal ? "secondary" : "primary"} size={40} />
+      ) : (
+        <img src={loadingSVG} width="20%" height="auto" alt="loading" />
+      )}
     </Box>
   );
 };

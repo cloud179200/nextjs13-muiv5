@@ -27,7 +27,7 @@ import WangBinh from "@/assets/images/users/gentleman.png";
 import { TbLogout, TbSettings } from "react-icons/tb";
 import moment from "moment/moment";
 import { NAME_TRANS_VN, NEXT_AUTH_STATUS } from "@/config/constant";
-import { useAppSelector } from "@/redux";
+import { useAppSelector } from "@/redux/hooks";
 import { signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
 // ==============================|| PROFILE MENU ||============================== //

@@ -23,12 +23,9 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
 import SubCard from "@/components/cards/SubCard";
-import {
-  SET_BORDER_RADIUS,
-  SET_FONT_FAMILY,
-} from "@/redux/customization/actions";
 import { gridSpacing } from "@/redux/customization/constant";
 import AnimateButton from "@/components/extended/AnimateButton";
+import { customizationActions } from "@/redux/customization/slice";
 
 // concat 'px'
 function valueText(value) {
@@ -55,7 +52,9 @@ const Customization = () => {
   };
 
   useEffect(() => {
-    dispatch({ type: SET_BORDER_RADIUS, borderRadius });
+    dispatch(
+      customizationActions["@customization/SET_BORDER_RADIUS"]({ borderRadius })
+    );
   }, [dispatch, borderRadius]);
 
   let initialFont;
@@ -94,7 +93,11 @@ const Customization = () => {
         newFont = `'Sono', sans-serif`;
         break;
     }
-    dispatch({ type: SET_FONT_FAMILY, fontFamily: newFont });
+    dispatch(
+      customizationActions["@customization/SET_FONT_FAMILY"]({
+        fontFamily: newFont,
+      })
+    );
   }, [dispatch, fontFamily]);
 
   return (

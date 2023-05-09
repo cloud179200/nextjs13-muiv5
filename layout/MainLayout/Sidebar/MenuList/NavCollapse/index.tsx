@@ -12,7 +12,7 @@ import NavItem from '../NavItem';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { TbChevronDown, TbChevronUp } from 'react-icons/tb';
 import {IListMenu, IListMenuChildren } from '@/config/menu-items';
-import { useAppSelector } from '@/redux';
+import { useAppSelector } from '@/redux/hooks';
 
 // ==============================|| SIDEBAR MENU LIST COLLAPSE ITEMS ||============================== //
 interface IProps {

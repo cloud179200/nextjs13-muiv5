@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import Link from "next/link";
@@ -10,24 +10,18 @@ import {
   Avatar,
   Chip,
   ListItemButton,
-  ListItemButtonProps,
   ListItemIcon,
   ListItemText,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 
-// project imports
-import {
-  MENU_OPEN,
-  SET_MENU,
-} from "../../../../../redux/customization/actions";
-
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import Animate from "../../../../../components/extended/AnimateButton";
 import { IListMenuChildren } from "@/config/menu-items";
-import { useAppDispatch, useAppSelector } from "@/redux";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { customizationActions } from "@/redux/customization/slice";
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 interface IProps {
@@ -38,11 +32,10 @@ interface IProps {
 
 const NavItem = ({ item, level }: IProps) => {
   const [itemTarget, setItemTarget] = useState("_self");
-  const [listItemProps, setListItemProps] = useState<ListItemButtonProps>({
-    LinkComponent: forwardRef((props, ref: React.Ref<HTMLAnchorElement>) => (
-      <Link ref={ref} {...props} href={item.url} target={itemTarget} />
-    )),
-  });
+  // const [listItemProps, setListItemProps] = useState<any>({
+  //   href: item.url,
+  //   target: itemTarget,
+  // });
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const customization = useAppSelector((state) => state.customization);
@@ -67,16 +60,26 @@ const NavItem = ({ item, level }: IProps) => {
   }
 
   if (item?.external) {
-    setListItemProps({
-      LinkComponent: forwardRef((props, ref: React.Ref<HTMLAnchorElement>) => (
-        <Link ref={ref} {...props} href={item.url} target={itemTarget} />
-      ))
-    });
+    // setListItemProps({
+    //   href: item.url,
+    //   target: itemTarget,
+    //   // forwardRef((props, ref: React.Ref<HTMLAnchorElement>) => (
+    //   //   <Link ref={ref} {...props} href={item.url} target={itemTarget} />
+    //   // ))
+    // });
   }
 
   const itemHandler = (id: string) => {
-    dispatch({ type: MENU_OPEN, id });
-    if (matchesSM) dispatch({ type: SET_MENU, opened: false });
+    dispatch(
+      customizationActions["@customization/MENU_OPEN"]({
+        id
+      })
+    );
+    if (matchesSM) dispatch(
+      customizationActions["@customization/SET_MENU"]({
+        opened: false
+      })
+    );
   };
 
   // active menu item on page load
@@ -86,14 +89,20 @@ const NavItem = ({ item, level }: IProps) => {
       .split("/")
       .findIndex((id) => id === item.id);
     if (currentIndex > -1) {
-      dispatch({ type: MENU_OPEN, id: item.id });
+      dispatch(
+        customizationActions["@customization/MENU_OPEN"]({
+          id: item.id
+        })
+      );
     }
     // eslint-disable-next-line
   }, []);
 
   return (
     <ListItemButton
-      {...listItemProps}
+      LinkComponent={Link}
+      href={item.url}
+      target={itemTarget}
       disabled={item.disabled}
       sx={{
         borderRadius: `${customization.borderRadius}px`,
@@ -103,10 +112,7 @@ const NavItem = ({ item, level }: IProps) => {
         py: level > 1 ? 1.25 : 1.5,
         pl: `${level * 24}px`,
       }}
-      selected={
-        customization.isOpen.findIndex((id) => id === item.id) > -1 ||
-        document.location.pathname === item.url
-      }
+      selected={customization.isOpen.some((id) => id === item.id) || document.location.pathname === item.url}
       onClick={() => itemHandler(item.id)}
     >
       <ListItemIcon sx={{ my: "auto", minWidth: !item?.icon ? 18 : 36 }}>
@@ -117,7 +123,7 @@ const NavItem = ({ item, level }: IProps) => {
           primary={
             <Typography
               variant={
-                customization.isOpen.findIndex((id) => id === item.id) > -1
+                (customization.isOpen.some((id) => id === item.id) || document.location.pathname === item.url)
                   ? "h5"
                   : "body1"
               }

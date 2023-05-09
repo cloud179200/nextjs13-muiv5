@@ -14,10 +14,10 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 // import Customization from "../Customization";
 import { drawerWidth } from "@/config/constant";
-import { SET_MENU } from "@/redux/customization/actions";
-import { useAppDispatch, useAppSelector } from "@/redux";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { customizationActions } from "@/redux/customization/slice";
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }: {theme: Theme, open: boolean}) => ({
+  ({ theme, open }: { theme: Theme, open: boolean }) => ({
     ...theme.typography.mainContent,
     ...(!open && {
       transition: theme.transitions.create("margin", {
@@ -68,11 +68,19 @@ const MainLayout = (props: { children: React.ReactNode }) => {
   // Handle left drawer
   const leftDrawerOpened = useAppSelector((state) => state.customization.opened);
   const handleLeftDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
+    dispatch(
+      customizationActions["@customization/SET_MENU"]({
+        opened: !leftDrawerOpened
+      })
+    );
   };
 
   useEffect(() => {
-    dispatch({ type: SET_MENU, opened: !matchDownMd });
+    dispatch(
+      customizationActions["@customization/SET_MENU"]({
+        opened: !matchDownMd
+      })
+    );
   }, [matchDownMd]);
 
   return (

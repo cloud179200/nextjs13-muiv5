@@ -14,8 +14,15 @@ import {
 import CustomBox from "../custom-box/CustomBox";
 import { TbX } from "react-icons/tb";
 
-const CustomModal = (props) => {
-  const theme = useTheme();
+interface IProps {
+  open: boolean,
+  handleClose: () => void,
+  title: string | React.ReactNode,
+  children?: React.ReactNode,
+}
+
+const CustomModal = (props: IProps) => {
+  const theme: any = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
 
   return (

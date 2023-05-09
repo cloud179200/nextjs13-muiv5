@@ -7,7 +7,6 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       credentials: {},
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(credentials, _) {
         const { email, password } = credentials as {
           email: string;

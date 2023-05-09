@@ -3,7 +3,7 @@ import React from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import theme from "../config/themes";
 import { Provider } from "react-redux";
-import { store } from "@/redux";
+import { store } from "@/redux/store";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children?: React.ReactNode })
         <ThemeProvider theme={theme()}>
           <CssBaseline />
           <SessionProvider refetchOnWindowFocus={false}>
-            <body>
+            <body suppressHydrationWarning={true}>
               <div><Toaster /></div>
               {children}
             </body>

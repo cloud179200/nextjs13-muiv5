@@ -5,11 +5,10 @@ import userReducer, {IUserState} from "./user/slice";
 import utilsReducer, { IUtilsState } from "./utils/slice";
 
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import storage from "./storage";
 
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-
+import { rootSaga } from "./saga";
 
 interface IReducer {
   customization: ICustomizationState;
@@ -21,7 +20,7 @@ const persistConfig = {
   key: "root",
   storage: storage,
   stateReconciler: autoMergeLevel2,
-  blacklist: ["common", "router", "customization"]
+  blacklist: ["common", "customization"]
 }
 
 const rootReducer: Reducer<CombinedState<IReducer>, AnyAction> = combineReducers({
@@ -44,9 +43,8 @@ export const store = configureStore({
     }).concat(sagaMiddleware),
 });
 
-export const persistor = persistStore(store);
+sagaMiddleware.run(rootSaga)
 
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch: () => AppDispatch = useDispatch
-export const useAppSelector: TypedUseSelectorHook<IReducer> = useSelector
+export const persistor = persistStore(store);
+export default store;
+
