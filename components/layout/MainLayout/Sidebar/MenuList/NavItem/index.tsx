@@ -21,6 +21,7 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import Animate from "@/components/extended/AnimateButton";
 import { IListMenuChildren } from "@/components/layout/menu-items";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { customizationActions, customizationActionsName } from "@/redux/customization/slice";
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 interface IProps {
@@ -36,9 +37,9 @@ const NavItem = ({ item, level }: IProps) => {
   //   target: itemTarget,
   // });
   const theme = useTheme();
-  const _dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const customization = useAppSelector((state) => state.customization);
-  const _matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
 
   const itemIcon = item?.icon ? (
     <item.icon stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
@@ -68,17 +69,9 @@ const NavItem = ({ item, level }: IProps) => {
     // });
   }
 
-  const itemHandler = (_id: string) => {
-    dispatch(
-      customizationActions[customizationActionsName.MENU_OPEN]({
-        id
-      })
-    );
-    if (matchesSM) dispatch(
-      customizationActions[customizationActionsName.SET_MENU]({
-        opened: false
-      })
-    );
+  const itemHandler = (id: string) => {
+    dispatch(customizationActions[customizationActionsName.MENU_OPEN]({ id }));
+    if (matchesSM) dispatch(customizationActions[customizationActionsName.SET_MENU]({ opened: false }));
   };
 
   // active menu item on page load

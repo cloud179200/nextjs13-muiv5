@@ -20,5 +20,4 @@ export function* utilsSaga() {
   yield takeLatest(utilsActions[actionTypes.RESET_UTILS_REDUCER_ACTION].type, resetUtils);
   yield takeLatest(utilsActions[actionTypes.SET_LOADING_ACTION].type, setLoadingAction);
   yield takeLatest(utilsActions[actionTypes.SET_LOADING_COMMON_ACTION].type, setLoadingCommonAction);
-  yield takeLatest(utilsActions.REHYDRATE, () => { });
 }

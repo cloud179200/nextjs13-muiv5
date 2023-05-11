@@ -3,8 +3,6 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 import LoadingComponent from '@/utils/component/Loading'
 import { NEXT_AUTH_STATUS } from '@/config/constant'
-import { Button } from '@mui/material'
-import { signOut } from 'next-auth/react';
 
 const page = () => {
 

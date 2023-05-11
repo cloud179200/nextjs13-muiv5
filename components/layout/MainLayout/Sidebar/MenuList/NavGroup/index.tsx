@@ -8,7 +8,7 @@ import { List, Typography } from '@mui/material';
 // project imports
 import NavItem from '../NavItem';
 import NavCollapse from '../NavCollapse';
-import { IListMenu } from '../../../../../config/menu-items/index';
+import { IListMenu } from '@/components/layout/menu-items';
 
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 interface IProps {
