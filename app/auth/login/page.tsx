@@ -27,7 +27,7 @@ import { signIn } from "next-auth/react"
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-const SignInComponent = ({ ...others }) => {
+const SignInComponent = () => {
   const theme = useTheme();
   const router = useRouter();
 
@@ -110,7 +110,7 @@ const SignInComponent = ({ ...others }) => {
                 </Grid>
               </Grid>
 
-              <form noValidate onSubmit={handleSubmit} {...others}>
+              <form noValidate onSubmit={handleSubmit}>
                 <FormControl
                   fullWidth
                   error={Boolean(touched.email && errors.email)}

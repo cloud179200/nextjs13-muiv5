@@ -3,6 +3,8 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 import LoadingComponent from '@/utils/component/Loading'
 import { NEXT_AUTH_STATUS } from '@/config/constant'
+import { Button } from '@mui/material'
+import { signOut } from 'next-auth/react';
 
 const page = () => {
 
@@ -12,9 +14,12 @@ const page = () => {
       <LoadingComponent />
     )
   }
-  if (NEXT_AUTH_STATUS.AUTHENTICATED === status ) {
+
+  if (NEXT_AUTH_STATUS.AUTHENTICATED === status) {
     return (
-      <div>Signed in with {data?.user?.email}</div>
+      <>
+        <div>Signed in with {data?.user?.email} </div>
+      </>
     )
   }
 

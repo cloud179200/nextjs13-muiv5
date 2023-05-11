@@ -1,8 +1,8 @@
 "use client";
 import Animate from "@/components/extended/AnimateButton";
 import { Button, Grid, Stack } from "@mui/material";
-// import { useSession } from "next-auth/react";
 import Link from "next/link";
+
 export default function Home() {
   return (
     <Grid container height="100vh" alignItems="center" justifyContent="center" direction="column">

@@ -17,7 +17,7 @@ const initialState: ICustomizationState = {
   calendarView: "month",
   opened: true,
 }
-const customizationReducer = createSlice({
+const customizationSlice = createSlice({
   name: "customization",
   initialState: _.clone(initialState),
   reducers: {
@@ -36,14 +36,11 @@ const customizationReducer = createSlice({
     },
     [actionTypes.SET_BORDER_RADIUS]: (state, action: PayloadAction<{ borderRadius: number }>) => {
       state.borderRadius = action.payload.borderRadius;
-    },
-    REHYDRATE: (state, action: PayloadAction<any>) => {
-      const rehydrated = (action && action.payload && action.payload.Account) || {}
-      return { ...state, ...rehydrated }
-    },
+    }
   }
 });
 
-export const customizationActions = customizationReducer.actions;
+export const customizationActions = customizationSlice.actions;
+export const customizationActionsName = actionTypes;
 
-export default customizationReducer.reducer;
+export default customizationSlice.reducer;

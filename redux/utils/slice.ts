@@ -21,9 +21,10 @@ const initialState: IUtilsState = {
   loadingCommon: false,
 }
 
-const commonReducer = createSlice({
+const utilsSlice = createSlice({
   name: "common",
   initialState: _.clone(initialState),
+  
   reducers: {
     [actionTypes.RESET_UTILS_REDUCER_ACTION]: (_state) => {
       _state = _.clone(initialState)
@@ -33,14 +34,11 @@ const commonReducer = createSlice({
     },
     [actionTypes.SET_LOADING_COMMON_ACTION]: (state, action: PayloadAction<{ state: boolean }>) => {
       state.loadingCommon = action.payload.state;
-    },
-    REHYDRATE: (state, action: PayloadAction<any>) => {
-      const rehydrated = (action && action.payload && action.payload.Account) || {}
-      return { ...state, ...rehydrated }
-    },
-  }
+    }
+  },
 });
 
-export const utilsActions = commonReducer.actions;
+export const utilsActions = utilsSlice.actions;
+export const utilsActionsName = actionTypes;
 
-export default commonReducer.reducer;
+export default utilsSlice.reducer;

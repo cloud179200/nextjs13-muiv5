@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+"use client"
 import React, { Suspense } from 'react';
 
 
@@ -6,7 +8,7 @@ import Loader from './Loader';
 
 // ==============================|| LOADABLE - LAZY LOADING ||============================== //
 
-const Loadable = (Component: React.FC<any>) => (props) => {
+const Loadable = (Component: React.FC<any>) => (props: { [key: string]: any }) => {
     return (
         <>
             <Suspense fallback={<Loader />}>

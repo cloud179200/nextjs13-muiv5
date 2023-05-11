@@ -30,7 +30,7 @@ import Animate from "@/components/extended/AnimateButton";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-const SignUpComponent = ({ ...others }) => {
+const SignUpComponent = () => {
   const theme = useTheme();
   const router = useRouter();
 
@@ -150,7 +150,7 @@ const SignUpComponent = ({ ...others }) => {
                 </Grid>
               </Grid>
 
-              <form noValidate onSubmit={handleSubmit} {...others}>
+              <form noValidate onSubmit={handleSubmit}>
                 <Grid container spacing={matchDownSM ? 0 : 2}>
                   <Grid item xs={12} sm={6}>
                     <TextField

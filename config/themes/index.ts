@@ -8,11 +8,8 @@ import componentStyleOverrides from './compStyleOverride';
 import themePalette from './palette';
 import themeTypography from './typography';
 
-const theme = () => {
+const theme = (customization: any) => {
     const color = colors;
-    const customization = {
-        borderRadius: 16
-    }
     const themeOption = {
         colors: color,
         heading: color.grey900,

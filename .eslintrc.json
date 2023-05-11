@@ -45,11 +45,6 @@
     "no-useless-catch": "off",
     "react/no-unescaped-entities": "off",
     "no-unreachable": "off",
-    "no-unused-vars": ["error", { 
-      "argsIgnorePattern": "^_",
-      "varsIgnorePattern": "^_",
-      "caughtErrorsIgnorePattern": "^_"
-    }],
     "@typescript-eslint/no-unused-vars": ["error", { 
       "argsIgnorePattern": "^_",
       "varsIgnorePattern": "^_",
