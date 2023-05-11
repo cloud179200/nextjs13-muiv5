@@ -1,6 +1,8 @@
 /* eslint-disable react/display-name */
 "use client"
 import React, { Suspense } from 'react';
+
+
 // project imports
 import Loader from './Loader';
 
@@ -15,4 +17,5 @@ const Loadable = (Component: React.FC<any>) => (props: { [key: string]: any }) =
         </>
     );
 }
+Loadable.displayName = "Loadable";
 export default Loadable;

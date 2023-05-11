@@ -37,7 +37,7 @@
   "rules": {
     "react/prop-types": "off",
     "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
-    "import/named": "off",
+    "import/named": 1,
     "import/namespace": 2,
     "import/default": 2,
     "import/export": 2,
@@ -51,8 +51,6 @@
       "caughtErrorsIgnorePattern": "^_"
     }],
     "@typescript-eslint/no-empty-function": "warn",
-    "react-hooks/rules-of-hooks":"warn",
-    "react-hooks/exhaustive-deps": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "react-hooks/rules-of-hooks":"warn"
   }
 }
