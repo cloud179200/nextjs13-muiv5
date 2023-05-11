@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { TableRow, TableCell, Fade } from "@mui/material";
 import _ from "underscore";
 
-const CustomRow = ({ rowData, index }) => {
+const CustomRow = ({ rowData, index }: { rowData: any, index: number }) => {
   return (
     <Fade in={true} style={{ transitionDelay: `${index * 40}ms` }}>
       <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
@@ -11,7 +11,7 @@ const CustomRow = ({ rowData, index }) => {
             return (
               <TableCell
                 key={rowData + key + id}
-                component={id === 0 ? "th" : ""}
+                component={id === 0 ? "th" : undefined}
                 scope={id === 0 ? "row" : ""}
                 align={id === 0 ? "inherit" : "right"}
               >

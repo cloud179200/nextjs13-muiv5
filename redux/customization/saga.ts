@@ -30,5 +30,4 @@ export function* customizationSaga() {
   yield takeLatest(customizationActions[actionTypes.MENU_OPEN].type, openMenu);
   yield takeLatest(customizationActions[actionTypes.SET_FONT_FAMILY].type, setFontFamily);
   yield takeLatest(customizationActions[actionTypes.SET_BORDER_RADIUS].type, setBorderRadiusMenu);
-  yield takeLatest(customizationActions.REHYDRATE, () => {});
 }
