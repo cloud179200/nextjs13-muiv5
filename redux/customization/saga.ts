@@ -1,6 +1,6 @@
-import { put, takeLatest } from "redux-saga/effects";
+import { put, takeEvery, takeLatest } from "redux-saga/effects";
 import * as actionTypes from "./actions";
-import { PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { customizationActions } from "./slice";
 
 
@@ -30,5 +30,4 @@ export function* customizationSaga() {
   yield takeLatest(customizationActions[actionTypes.MENU_OPEN].type, openMenu);
   yield takeLatest(customizationActions[actionTypes.SET_FONT_FAMILY].type, setFontFamily);
   yield takeLatest(customizationActions[actionTypes.SET_BORDER_RADIUS].type, setBorderRadiusMenu);
-  yield takeLatest(customizationActions.REHYDRATE, () => {});
 }

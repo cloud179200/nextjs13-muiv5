@@ -31,22 +31,17 @@ const rootReducer: Reducer<CombinedState<IState>, AnyAction> = combineReducers({
 
 // const reducer = persistReducer<IState, AnyAction>(persistConfig, rootReducer);
 
-const sagaMiddleware = createSagaMiddleware();
+// const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: rootReducer,
-  devTools: true,
-  middleware: (getDefaultMiddleware: any) =>
-    getDefaultMiddleware(
-      // {
-      //   serializableCheck: {
-      //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-      //   }
-      // }
-    ).concat(sagaMiddleware),
+  devTools: process.env.NODE_ENV !== "production",
+  middleware: (getDefaultMiddleware: any) => getDefaultMiddleware({}).concat(
+    // sagaMiddleware
+    ),
 });
 
-sagaMiddleware.run(rootSaga)
+// sagaMiddleware.run(rootSaga)
 
 // export const persistor = persistStore(store);
 
@@ -56,7 +51,5 @@ export type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore['getState']>;
 export type AppDispatch = AppStore['dispatch'];
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<IState> = useSelector;
-// export const wrapper = createWrapper<AppStore>(makeStore);

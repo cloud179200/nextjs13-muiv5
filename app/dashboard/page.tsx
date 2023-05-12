@@ -19,7 +19,7 @@ const page = () => {
     }
 
     return (
-      <div>You are not Signed in</div>
+      <LoadingComponent/>
     )
   }
 
