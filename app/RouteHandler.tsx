@@ -35,7 +35,7 @@ function RouteHandler(props: IProps) {
         break;
       case NEXT_AUTH_STATUS.UNAUTHENTICATED:
         toast.remove(NEXT_AUTH_STATUS.LOADING)
-        if (!isPrivatePath) {
+        if (isPrivatePath) {
           router.replace("/auth/login")
         }
         break;
