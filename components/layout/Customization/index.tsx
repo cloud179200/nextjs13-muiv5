@@ -80,7 +80,6 @@ const Customization = (_props: IProps) => {
         newFont = `'Sono', sans-serif`;
         break;
     }
-    console.log({newFont})
     dispatch(
       customizationActions[customizationActionsName.SET_FONT_FAMILY]({
         fontFamily: newFont,
@@ -247,7 +246,7 @@ const Customization = (_props: IProps) => {
                       marks
                       step={2}
                       min={4}
-                      max={24}
+                      max={48}
                       color="secondary"
                       sx={{
                         "& .MuiSlider-valueLabel": {
@@ -258,7 +257,7 @@ const Customization = (_props: IProps) => {
                   </Grid>
                   <Grid item>
                     <Typography variant="h6" color="secondary">
-                      24px
+                      48px
                     </Typography>
                   </Grid>
                 </Grid>

@@ -1,8 +1,12 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, SxProps, Theme } from "@mui/material";
 import { useAppSelector } from "@/redux/store";
-
-const CustomBox = (props: any) => {
+interface IProps {
+  sx?: SxProps<Theme>,
+  children?: React.ReactNode,
+  className?: string
+}
+const CustomBox = (props: IProps) => {
   const customization = useAppSelector((state) => state.customization);
 
   return (
@@ -13,13 +17,17 @@ const CustomBox = (props: any) => {
       sx={{
         backgroundColor: "#fff",
         borderRadius: `${customization.borderRadius}px`,
-        boxShadow: 4,
-        ...(props?.sx || {}),
+        boxShadow: 2,
+        transition: "all 0.3s",
+        "&:hover": {
+          boxShadow: 6,
+        },
+        ...(props?.sx || {})
       }}
       className={props.className}
     >
       {props.children}
-    </Box>
+    </Box >
   );
 };
 

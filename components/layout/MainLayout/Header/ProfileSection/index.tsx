@@ -99,7 +99,7 @@ const ProfileSection = () => {
         sx={{
           height: "48px",
           alignItems: "center",
-          borderRadius: "27px",
+          borderRadius: customization.borderRadius,
           transition: "all .2s ease-in-out",
           borderColor: theme.palette.primary.light,
           backgroundColor: theme.palette.primary.light,
@@ -122,7 +122,6 @@ const ProfileSection = () => {
               ...theme.typography.mediumAvatar,
               margin: "8px 0 8px 8px !important",
               cursor: "pointer"
-
             }}
             ref={anchorRef}
             aria-controls={open ? "menu-list-grow" : undefined}

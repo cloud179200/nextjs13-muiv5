@@ -3,29 +3,35 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 import LoadingComponent from '@/utils/component/Loading'
 import { NEXT_AUTH_STATUS } from '@/config/constant'
-import { Button } from '@mui/material'
-import { signOut } from 'next-auth/react';
+import CustomBox from '@/components/custom-box/CustomBox'
 
 const page = () => {
 
   const { data, status } = useSession()
-  if (NEXT_AUTH_STATUS.LOADING === status) {
+
+  const render = () => {
+    if (NEXT_AUTH_STATUS.LOADING === status) {
+      return (
+        <LoadingComponent />
+      )
+    }
+
+    if (NEXT_AUTH_STATUS.AUTHENTICATED === status) {
+      return (
+        <>
+          <div>Signed in with {data?.user?.email} </div>
+        </>
+      )
+    }
+
     return (
-      <LoadingComponent />
+      <div>You are not Signed in</div>
     )
   }
 
-  if (NEXT_AUTH_STATUS.AUTHENTICATED === status) {
-    return (
-      <>
-        <div>Signed in with {data?.user?.email} </div>
-      </>
-    )
-  }
-
-  return (
-    <div>You are not Signed in</div>
-  )
+  return <CustomBox>
+    {render()}
+  </CustomBox>
 }
 
 export default page

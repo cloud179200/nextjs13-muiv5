@@ -13,12 +13,12 @@ import ProfileSection from './ProfileSection';
 
 // assets
 import { TbMenu2 } from 'react-icons/tb';
-
+import { useAppSelector } from "@/redux/store"
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
 const Header = ({ handleLeftDrawerToggle }: { handleLeftDrawerToggle: any }) => {
     const theme = useTheme();
-
+    const customization = useAppSelector((state) => state.customization);
     return (
         <>
             {/* logo & toggler button */}
@@ -34,7 +34,7 @@ const Header = ({ handleLeftDrawerToggle }: { handleLeftDrawerToggle: any }) => 
                 <Box component="span" sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: "center", alignItems: "center", flexGrow: 1 }}>
                     <LogoSection />
                 </Box>
-                <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
+                <ButtonBase sx={{ borderRadius:`${customization.borderRadius}px`, overflow: 'hidden' }}>
                     <Avatar
                         variant="rounded"
                         sx={{
@@ -46,7 +46,7 @@ const Header = ({ handleLeftDrawerToggle }: { handleLeftDrawerToggle: any }) => 
                             '&:hover': {
                                 background: theme.palette.secondary.dark,
                                 color: theme.palette.secondary.light
-                            }
+                            },
                         }}
                         onClick={handleLeftDrawerToggle}
                         color="inherit"
