@@ -1,8 +1,8 @@
 "use client"
 import * as Yup from "yup";
-import { FORM_VALIDATE_ERROR_MESSAGE } from "../../config/constant";
+import { FORM_VALIDATE_ERROR_MESSAGE } from "@/config/constant";
 import { parsePhoneNumberWithError } from "libphonenumber-js";
-
+const regexPatternDOB = /\b([0-3][0-9])\/(0[1-9]|1[0-2])\/([0-9]{4}) ([01][0-9]|2[0-3]):([0-5][0-9])\b/;
 export const signUpSchema = Yup.object().shape({
   email: Yup.string()
     .email(FORM_VALIDATE_ERROR_MESSAGE.INVALID)
@@ -23,9 +23,15 @@ export const signUpSchema = Yup.object().shape({
   last_Name: Yup.string()
     .max(255)
     .required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
-  address: Yup.string().max(255).required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
-  phone_Number: Yup.string()
-    .test(`phone`, FORM_VALIDATE_ERROR_MESSAGE.INVALID, (value:any) => {
+  date_of_birth: Yup.string().matches(regexPatternDOB, FORM_VALIDATE_ERROR_MESSAGE.INVALID).required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
+  country: Yup.string()
+    .max(255)
+    .required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
+  state: Yup.string()
+    .max(255)
+    .required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
+  phone_number: Yup.string()
+    .test(`phone`, FORM_VALIDATE_ERROR_MESSAGE.INVALID, (value: any) => {
       try {
         const val = value || "";
         const phone = parsePhoneNumberWithError(val, "VN");
@@ -35,9 +41,8 @@ export const signUpSchema = Yup.object().shape({
       }
     })
     .required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
-    user_Type: Yup.number().oneOf([2, 3], FORM_VALIDATE_ERROR_MESSAGE.INVALID).default(2),
-    gender: Yup.number().oneOf([0, 1], FORM_VALIDATE_ERROR_MESSAGE.INVALID).default(0),
-  });
+  gender: Yup.number().oneOf([0, 1, 2], FORM_VALIDATE_ERROR_MESSAGE.INVALID).default(0),
+});
 
 export const signInSchema = Yup.object().shape({
   email: Yup.string()

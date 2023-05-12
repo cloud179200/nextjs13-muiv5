@@ -63,7 +63,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 const MainLayout = (props: { children?: React.ReactNode }) => {
   const dispatch = useAppDispatch();
   const loadingCommon = useAppSelector((state) => state.common.loading);
-  const theme = useTheme();
+  const theme: any = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down("lg"));
 
   // Handle left drawer

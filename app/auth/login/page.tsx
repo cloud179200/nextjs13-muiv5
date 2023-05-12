@@ -28,7 +28,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const SignInComponent = () => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);

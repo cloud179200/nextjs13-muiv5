@@ -56,7 +56,7 @@ const status = [
 // ==============================|| NOTIFICATION ||============================== //
 
 const NotificationSection = () => {
-    const theme = useTheme();
+    const theme: any = useTheme();
     const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
 
     const [open, setOpen] = useState(false);

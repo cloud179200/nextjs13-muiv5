@@ -2,9 +2,9 @@ import React from "react";
 import { Box, Button } from "@mui/material";
 import NotFoundPNG from "@/assets/images/404.png";
 import SearchSVG from "@/assets/images/search.svg";
-import MinimalLayout from "@/layout/MinimalLayout";
 import Link from "next/link";
 import Image from "next/image";
+import MinimalLayout from "@/components/layout/MinimalLayout";
 
 const NotFoundComponent = () => {
   return (

@@ -8,7 +8,7 @@ import componentStyleOverrides from './compStyleOverride';
 import themePalette from './palette';
 import themeTypography from './typography';
 
-const theme = (customization: any) => {
+const theme: any = (customization: any) => {
     const color = colors;
     const themeOption = {
         colors: color,

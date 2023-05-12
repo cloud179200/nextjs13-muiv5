@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button, Grid, Stack, useTheme } from "@mui/material";
 
 export default function Home() {
-  const theme = useTheme()
+  const theme: any = useTheme()
   return (
     <Grid container height="100vh" alignItems="center" justifyContent="center" direction="column">
       <h1>Using Material UI with Next.js 13</h1>

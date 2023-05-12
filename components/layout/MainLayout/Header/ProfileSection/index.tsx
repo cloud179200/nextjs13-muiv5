@@ -34,7 +34,7 @@ import { useRouter } from "next/navigation";
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const customization = useAppSelector((state) => state.customization);
   const router = useRouter();
   // const userInfo = useAppSelector((state) => state.user.userInfo);

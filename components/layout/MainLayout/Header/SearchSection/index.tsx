@@ -111,7 +111,7 @@ const MobileSearch = ({ value, setValue, popupState }: any) => {
 // ==============================|| SEARCH INPUT ||============================== //
 
 const SearchSection = () => {
-    const theme = useTheme();
+    const theme: any = useTheme();
     const [value, setValue] = useState('');
 
     return (

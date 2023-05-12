@@ -89,6 +89,8 @@ export const NAME_TRANS_VN = {
   MALE: "Nam",
   FEMALE: "Nữ",
   GENDER: "Giới Tính",
+  GENDER_OTHER: "Khác",
+  DATE_OF_BIRTH: "Ngày Giờ Sinh",
   PAYROLL_NEW: "Bậc Lương Mới",
   PAYROLL_ADD: "Thêm Bậc Lương",
   PAYROLL_EDIT: "Sửa Bậc Lương",

@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "layout/Customization/index.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "layout/Customization/index.tsx", "components/layout/Customization/index.js", "components/extended/Breadcrumbs.js"],
   "exclude": ["node_modules"]
 }

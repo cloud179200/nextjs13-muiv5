@@ -37,13 +37,11 @@
   "rules": {
     "react/prop-types": "off",
     "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
-    "import/named": 1,
+    "import/named": "off",
     "import/namespace": 2,
     "import/default": 2,
     "import/export": 2,
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
+    "import/parsers": 2,
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true
@@ -51,8 +49,11 @@
     },
     "no-debugger": "off",
     "no-useless-catch": "off",
-    "react/no-unescaped-entities": "off",
     "no-unreachable": "off",
+    "react/no-unescaped-entities": "off",
+    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/parser": [".ts", ".tsx"],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -62,6 +63,6 @@
       }
     ],
     "@typescript-eslint/no-empty-function": "warn",
-    "react-hooks/rules-of-hooks": "warn"
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

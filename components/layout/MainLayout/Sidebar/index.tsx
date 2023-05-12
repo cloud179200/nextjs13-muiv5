@@ -21,7 +21,7 @@ interface IProps {
     window?: any 
 }
 const Sidebar = ({ drawerOpen, drawerToggle, window }: IProps) => {
-    const theme = useTheme();
+    const theme: any = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
     const drawer = (

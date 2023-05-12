@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 
 import Link from "next/link";
 
@@ -21,7 +20,8 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import Animate from "@/components/extended/AnimateButton";
 import { IListMenuChildren } from "@/components/layout/menu-items";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
-
+import { customizationActions, customizationActionsName } from "@/redux/customization/slice";
+import { usePathname } from "next/navigation";
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 interface IProps {
   item: IListMenuChildren,
@@ -30,15 +30,16 @@ interface IProps {
 }
 
 const NavItem = ({ item, level }: IProps) => {
-  const [itemTarget, setItemTarget] = useState("_self");
   // const [listItemProps, setListItemProps] = useState<any>({
   //   href: item.url,
   //   target: itemTarget,
   // });
-  const theme = useTheme();
-  const _dispatch = useAppDispatch();
+  const theme: any = useTheme();
+  const dispatch = useAppDispatch();
   const customization = useAppSelector((state) => state.customization);
-  const _matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
+  const pathname = usePathname()
+  const [itemTarget, setItemTarget] = useState("_self");
 
   const itemIcon = item?.icon ? (
     <item.icon stroke={"currentColor"} strokeWidth={"1.5"} size="1.3rem" />
@@ -68,7 +69,7 @@ const NavItem = ({ item, level }: IProps) => {
     // });
   }
 
-  const itemHandler = (_id: string) => {
+  const itemHandler = (id: string) => {
     dispatch(
       customizationActions[customizationActionsName.MENU_OPEN]({
         id
@@ -83,10 +84,7 @@ const NavItem = ({ item, level }: IProps) => {
 
   // active menu item on page load
   useEffect(() => {
-    const currentIndex = document.location.pathname
-      .toString()
-      .split("/")
-      .findIndex((id) => id === item.id);
+    const currentIndex = (pathname || "").split("/").findIndex((id) => id === item.id);
     if (currentIndex > -1) {
       dispatch(
         customizationActions[customizationActionsName.MENU_OPEN]({
@@ -156,11 +154,6 @@ const NavItem = ({ item, level }: IProps) => {
       )}
     </ListItemButton>
   );
-};
-
-NavItem.propTypes = {
-  item: PropTypes.object,
-  level: PropTypes.number,
 };
 
 export default NavItem;

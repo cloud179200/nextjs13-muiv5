@@ -29,9 +29,11 @@ import Link from "next/link";
 import Animate from "@/components/extended/AnimateButton";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
+import moment from "moment";
 
 const SignUpComponent = () => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const router = useRouter();
 
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
@@ -48,8 +50,10 @@ const SignUpComponent = () => {
       password: "",
       confirm_password: "",
       address: "",
-      phone_Number: "",
-      user_Type: 2,
+      date_of_birth: "",
+      country: "",
+      state: "",
+      phone_number: "",
       gender: 0,
     },
     validationSchema: signUpSchema,
@@ -299,19 +303,19 @@ const SignUpComponent = () => {
                 </FormControl>
                 <FormControl
                   fullWidth
-                  error={Boolean(touched.phone_Number && errors.phone_Number)}
+                  error={Boolean(touched.phone_number && errors.phone_number)}
                   sx={{ ...theme.typography.customInput }}
                 >
                   <InputLabel>{NAME_TRANS_VN.PHONE_NUMBER}</InputLabel>
                   <OutlinedInput
                     type="phone"
-                    value={values.phone_Number}
-                    name="phone_Number"
+                    value={values.phone_number}
+                    name="phone_number"
                     onBlur={handleBlur}
                     onChange={handleChange}
                   />
-                  {touched.phone_Number && errors.phone_Number && (
-                    <FormHelperText error>{errors.phone_Number}</FormHelperText>
+                  {touched.phone_number && errors.phone_number && (
+                    <FormHelperText error>{errors.phone_number}</FormHelperText>
                   )}
                 </FormControl>
                 <FormControl
@@ -352,6 +356,9 @@ const SignUpComponent = () => {
                         <MenuItem value={1}>
                           {NAME_TRANS_VN.FEMALE}{" "}
                         </MenuItem>
+                        <MenuItem value={1}>
+                          {NAME_TRANS_VN.GENDER_OTHER}{" "}
+                        </MenuItem>
                       </Select>
                       {touched.gender && errors.gender && (
                         <FormHelperText error>{errors.gender}</FormHelperText>
@@ -362,20 +369,13 @@ const SignUpComponent = () => {
                     <FormControl
                       fullWidth
                       variant="outlined"
-                      error={Boolean(touched.user_Type && errors.user_Type)}
+                      error={Boolean(touched.date_of_birth && errors.date_of_birth)}
                       sx={{ ...theme.typography.customInput }}
                     >
-                      <Select
-                        name="user_Type"
-                        value={values.user_Type}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      >
-                        <MenuItem value={2}>{NAME_TRANS_VN.STUDENT}</MenuItem>
-                        <MenuItem value={3}>{NAME_TRANS_VN.TEACHER}</MenuItem>
-                      </Select>
-                      {touched.user_Type && errors.user_Type && (
-                        <FormHelperText error>{errors.user_Type}</FormHelperText>
+                      <InputLabel>{NAME_TRANS_VN.DATE_OF_BIRTH}</InputLabel>
+                      <DateTimeField defaultValue={moment('2022-04-17T15:30')} />
+                      {touched.date_of_birth && errors.date_of_birth && (
+                        <FormHelperText error>{errors.date_of_birth}</FormHelperText>
                       )}
                     </FormControl>
                   </Grid>

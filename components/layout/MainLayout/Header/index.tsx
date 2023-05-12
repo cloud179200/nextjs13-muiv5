@@ -17,7 +17,7 @@ import { useAppSelector } from "@/redux/store"
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
 const Header = ({ handleLeftDrawerToggle }: { handleLeftDrawerToggle: any }) => {
-    const theme = useTheme();
+    const theme: any = useTheme();
     const customization = useAppSelector((state) => state.customization);
     return (
         <>
