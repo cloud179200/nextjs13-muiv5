@@ -1,7 +1,7 @@
 "use client";
 import Animate from "@/components/extended/AnimateButton";
-import { Button, Grid, Stack, useTheme } from "@mui/material";
 import Link from "next/link";
+import { Button, Grid, Stack, useTheme } from "@mui/material";
 
 export default function Home() {
   const theme = useTheme()

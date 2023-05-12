@@ -1,11 +1,14 @@
-"use client";
+"use client"
 import React from "react";
-import {  CssBaseline } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 import { store } from "@/redux/store";
-import CustomThemeProviders from "./theme";
+import CustomThemeProvider from "./CustomThemeProvider";
+import RouteHandler from "./RouteHandler";
+import MinimalLayout from "@/components/layout/MinimalLayout";
+
 import "@/assets/scss/style.scss"
 
 function RootLayout({ children }: { children?: React.ReactNode }) {
@@ -18,13 +21,17 @@ function RootLayout({ children }: { children?: React.ReactNode }) {
       </head>
       <SessionProvider refetchOnWindowFocus={false}>
         <Provider store={store}>
-          <CustomThemeProviders>
-            <CssBaseline />
-            <body suppressHydrationWarning={true}>
-              <div><Toaster /></div>
-              {children}
-            </body>
-          </CustomThemeProviders>
+          <RouteHandler>
+            <CustomThemeProvider>
+              <CssBaseline />
+              <body suppressHydrationWarning={true}>
+                <div><Toaster /></div>
+                <MinimalLayout>
+                {children}
+                </MinimalLayout>
+              </body>
+            </CustomThemeProvider>
+          </RouteHandler>
         </Provider>
       </SessionProvider>
     </html>
