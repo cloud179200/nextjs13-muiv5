@@ -15,11 +15,14 @@ const userSlice = createSlice({
   name: "user",
   initialState: _.clone(initialState),
   reducers: {
-    [actionTypes.SET_USER_ACTION]: (state, action: PayloadAction<{ id: string }>) => {
+    [actionTypes.SET_USER_ACTION]: (state, action: PayloadAction<any>) => {
       state = _.clone(initialState)
       state.userInfo = { ...action.payload }
     }
   }
 });
+
+export const userActions = userSlice.actions;
+export const userActionsName = actionTypes;
 
 export default userSlice.reducer;
