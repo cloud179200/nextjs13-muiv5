@@ -3,6 +3,7 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 import { NEXT_AUTH_STATUS } from '@/config/constant'
 import CustomBox from '@/components/custom-box/CustomBox'
+import LoadingComponent from '@/utils/component/Loading'
 
 const page = () => {
 
@@ -19,7 +20,9 @@ const page = () => {
     }
 
     return (
-      <LoadingComponent/>
+      <>
+        <LoadingComponent />
+      </>
     )
   }
 

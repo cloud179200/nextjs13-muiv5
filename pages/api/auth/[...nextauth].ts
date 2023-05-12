@@ -30,4 +30,21 @@ export default NextAuth({
   ],
   secret: process.env.SECRET,
   session: { strategy: "jwt", maxAge: 1 * 24 * 30 * 60 },
+  callbacks: {
+    async signIn(tehe) {
+      console.log("[signIn]", tehe)
+      return true
+    },
+    async redirect({ url, baseUrl }) {
+      return baseUrl
+    },
+    async session({ session, ...rest }) {
+      console.log("[session]", { ...rest, session })
+      return session
+    },
+    async jwt({ token, ...rest }) {
+      console.log("[jwt]", { ...rest, token })
+      return token
+    }
+  }
 });
