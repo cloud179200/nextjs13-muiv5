@@ -49,6 +49,7 @@ const SignInComponent = () => {
         redirect: false,
         ..._values,
       })
+      await fetch("/dashboard");
       formikHelpers.setSubmitting(false)
       if(!result){
         toast.error("Error");

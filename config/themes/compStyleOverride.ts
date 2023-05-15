@@ -1,4 +1,6 @@
- function componentStyleOverrides(theme: any) {
+import { Components, Theme } from "@mui/material";
+
+const componentStyleOverrides: (theme: any) => Components<Omit<Theme, 'components'>> = (theme: any)  => {
   const bgColor = theme.colors?.grey50;
   return {
     MuiButton: {

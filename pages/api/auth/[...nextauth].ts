@@ -1,9 +1,9 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
 import { compareHashString } from "@/utils/auth";
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       credentials: {},
@@ -47,4 +47,6 @@ export default NextAuth({
       return token
     }
   }
-});
+}
+
+export default NextAuth(authOptions);

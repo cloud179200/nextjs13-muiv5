@@ -14,9 +14,10 @@ function RouteHandler(props: IProps) {
   const router = useRouter()
   const pathname = usePathname();
   const dispatch = useAppDispatch()
-  const { data, status } = useSession()
+  const { data, status, update, ...rest } = useSession()
   const isPrivatePath = useMemo(() =>  PRIVATE_ROUTE.some(item => (pathname || "").startsWith(item.path)) , [pathname])
   const commonLoading = useAppSelector(state => state.common.loadingCommon)
+
   useEffect(() => {
     switch (status) {
       case NEXT_AUTH_STATUS.LOADING:
@@ -44,8 +45,7 @@ function RouteHandler(props: IProps) {
     }
   }, [status, isPrivatePath])
 
-  console.log({pathname})
-
+  console.log({rest})
   return (
     <>
       {props.children}
