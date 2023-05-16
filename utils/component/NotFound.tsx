@@ -1,9 +1,9 @@
+"use client"
 import React from "react";
 import { Box, Button } from "@mui/material";
 import NotFoundPNG from "@/assets/images/404.png";
 import SearchSVG from "@/assets/images/search.svg";
 import Link from "next/link";
-import Image from "next/image";
 import MinimalLayout from "@/components/layout/MinimalLayout";
 
 const NotFoundComponent = () => {
@@ -27,8 +27,8 @@ const NotFoundComponent = () => {
             width: "100%",
           }}
         >
-          <Image src={SearchSVG} width="100" alt="img"/>
-          <Image src={NotFoundPNG} width="300" alt="img"/>
+          <img src={SearchSVG} width="100" alt="img"/>
+          <img src={NotFoundPNG.src} width="300" alt="img"/>
         </Box>
         <Button
           disableElevation

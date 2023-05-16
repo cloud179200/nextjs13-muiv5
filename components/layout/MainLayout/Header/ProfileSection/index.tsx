@@ -31,6 +31,7 @@ import { NAME_TRANS_VN, NEXT_AUTH_STATUS } from "@/config/constant";
 import { useAppSelector } from "@/redux/store";
 import { signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
+import { faker } from '@faker-js/faker';
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
@@ -39,9 +40,10 @@ const ProfileSection = () => {
   const router = useRouter();
   // const userInfo = useAppSelector((state) => state.user.userInfo);
   // const userDetail = useAppSelector((state) => state.user.userDetail);
-  const {data, status } = useSession()
+  const { data, status } = useSession()
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
+  const avatarURL = useMemo(() => faker.image.avatar(), [data?.user?.email])
   const anchorRef = useRef<HTMLDivElement | null>(null);
 
   const handleLogout = async () => {
@@ -117,7 +119,7 @@ const ProfileSection = () => {
         }}
         icon={
           <Avatar
-            src={WangBinh.src}
+            src={avatarURL}
             sx={{
               ...theme.typography.mediumAvatar,
               margin: "8px 0 8px 8px !important",

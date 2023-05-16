@@ -8,18 +8,9 @@ const nextConfig = {
   },
   webpack(config) {
     config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: { and: [/\.(js|ts|jsx|tsx|md)x?$/] },
-      use: [
-        {
-          loader: "@svgr/webpack",
-          options: {
-            svgoConfig: { plugins: [{ removeViewBox: false }] },
-          },
-        },
-      ],
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
     });
-
     return config;
   },
 };

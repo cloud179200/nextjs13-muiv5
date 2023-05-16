@@ -125,6 +125,7 @@ const SignInComponent = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     label={NAME_TRANS_VN.EMAIL}
+                    disabled={isSubmitting}
                   />
                   {touched.email && errors.email && (
                     <FormHelperText error>{errors.email}</FormHelperText>
@@ -155,6 +156,7 @@ const SignInComponent = () => {
                       </InputAdornment>
                     }
                     label={NAME_TRANS_VN.PASSWORD}
+                    disabled={isSubmitting}
                   />
                   {touched.password && errors.password && (
                     <FormHelperText error>{errors.password}</FormHelperText>

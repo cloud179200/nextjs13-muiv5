@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.21.4",
+    "@faker-js/faker": "^8.0.1",
     "@svgr/webpack": "^8.0.1",
     "@types/bcrypt": "^5.0.0",
     "@types/underscore": "^1.11.4",
