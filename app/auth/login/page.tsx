@@ -20,9 +20,9 @@ import { useFormik } from "formik";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { signInSchema } from "../schema";
-import { NAME_TRANS_VN } from "../../../config/constant";
+import { NAME_TRANS_VN } from "@/app/config/constant";
 import Link from "next/link";
-import Animate from "@/components/extended/AnimateButton";
+import Animate from "@/app/components/extended/AnimateButton";
 import { signIn } from "next-auth/react"
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";

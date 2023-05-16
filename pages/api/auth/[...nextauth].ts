@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import prisma from "@/lib/prisma";
-import { compareHashString } from "@/utils/auth";
+import prisma from "@/app/lib/prisma";
+import { compareHashString } from "@/app/utils/auth";
 
 export const authOptions: NextAuthOptions = {
   providers: [

@@ -1,8 +1,7 @@
 "use client"
-import React from "react";
-import MinimalLayout from "@/components/layout/MinimalLayout";
-import CustomProviders from "./CustomProviders";
-import "@/assets/scss/style.scss"
+import MinimalLayout from "@/app/components/layout/MinimalLayout/MinimalLayoutClient";
+import CustomProviders from "./providers";
+import "@/app/assets/scss/style.scss"
 
 function RootLayout({ children }: { children?: React.ReactNode }) {
   return (

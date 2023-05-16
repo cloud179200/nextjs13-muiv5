@@ -1,9 +1,9 @@
 "use client"
 import React from 'react'
 import { useSession } from 'next-auth/react'
-import { NEXT_AUTH_STATUS } from '@/config/constant'
-import CustomBox from '@/components/custom-box/CustomBox'
-import LoadingComponent from '@/utils/component/Loading'
+import { NEXT_AUTH_STATUS } from '@/app/config/constant'
+import CustomBox from '@/app/components/custom-box/CustomBox'
+import LoadingComponent from '@/app/utils/component/Loading'
 
 const page = () => {
 
@@ -28,6 +28,7 @@ const page = () => {
 
   return <CustomBox>
     {render()}
+    <LoadingComponent />
   </CustomBox>
 }
 

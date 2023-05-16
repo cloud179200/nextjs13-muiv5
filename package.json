@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "start http://localhost:3033 && cross-env NODE_OPTIONS='--inspect' next dev -p 3033",
-    "build": "next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -35,7 +35,7 @@
     "moment": "^2.29.4",
     "mongodb": "^5.4.0",
     "mui-chips-input": "^2.0.1",
-    "next": "^13.4.2",
+    "next": "^13.2.4",
     "next-auth": "^4.22.0",
     "next-redux-wrapper": "^8.1.0",
     "react": "18.2.0",
@@ -54,6 +54,7 @@
     "typescript": "5.0.4",
     "underscore": "^1.13.6",
     "uuid": "^9.0.0",
+    "world-countries": "^4.0.0",
     "yup": "^1.1.1"
   },
   "devDependencies": {

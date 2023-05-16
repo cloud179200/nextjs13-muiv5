@@ -1,5 +1,5 @@
 "use client";
-import Animate from "@/components/extended/AnimateButton";
+import Animate from "@/app/components/extended/AnimateButton";
 import Link from "next/link";
 import { Button, Grid, Stack, useTheme } from "@mui/material";
 

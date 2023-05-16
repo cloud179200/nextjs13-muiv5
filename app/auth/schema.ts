@@ -1,6 +1,6 @@
 "use client"
 import * as Yup from "yup";
-import { FORM_VALIDATE_ERROR_MESSAGE } from "@/config/constant";
+import { FORM_VALIDATE_ERROR_MESSAGE } from "@/app/config/constant";
 import { parsePhoneNumberWithError } from "libphonenumber-js";
 const regexPatternDOB = /\b([0-3][0-9])\/(0[1-9]|1[0-2])\/([0-9]{4}) ([01][0-9]|2[0-3]):([0-5][0-9])\b/;
 export const signUpSchema = Yup.object().shape({

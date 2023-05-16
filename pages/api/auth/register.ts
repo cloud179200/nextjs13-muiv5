@@ -1,7 +1,7 @@
-import prisma from "@/lib/prisma";
+import prisma from "@/app/app/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getHashString } from "@/utils/auth";
-import { resErrorJson } from "@/utils";
+import { getHashString } from "@/app/utils/auth";
+import { resErrorJson } from "@/app/utils";
 import { ObjectId } from "mongodb";
 export default async function handler(
   req: NextApiRequest,
