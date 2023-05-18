@@ -27,8 +27,13 @@ export const fileToBase64 = (file: File) =>
     reader.onerror = (error) => reject(error);
   });
 
+export const resSuccessJson = (message = "Success") => {
+  return {
+    message
+  }
+}
 
-export const resErrorJson = (message = "Lỗi") => {
+export const resErrorJson = (message = "Error") => {
   return {
     error: 1,
     message

@@ -1,3 +1,3 @@
-import NotFoundComponent from "@/app/utils/component/NotFound";
+import NotFoundComponent from "@/app/components/NotFound";
 
 export default NotFoundComponent

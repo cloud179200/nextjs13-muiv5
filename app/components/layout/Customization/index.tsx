@@ -39,6 +39,7 @@ function valueText(value: number | string) {
 
 // ==============================|| LIVE CUSTOMIZATION ||============================== //
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Customization = (_props: IProps) => {
   const theme: any = useTheme();
   const dispatch = useAppDispatch();

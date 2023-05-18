@@ -11,9 +11,8 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:react/recommended",
-    "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "next"
   ],
   "parserOptions": {
     "sourceType": "module",
@@ -36,25 +35,21 @@
   "plugins": ["react", "import", "@typescript-eslint"],
   "rules": {
     "react/prop-types": "off",
-    "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
+    "import/no-unresolved": ["error", { "commonjs": true, "amd": true }],
     "import/named": "off",
-    "import/namespace": 2,
-    "import/default": 2,
-    "import/export": 2,
-    "import/parsers": 2,
-    "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true
-      }
-    },
+    "import/namespace": "off",
+    "import/default": "off",
+    "import/export": "off",
+    "import/parsers": "off",
+    "import/resolver": "off",
+    "no-console": "warn",
     "no-debugger": "off",
     "no-useless-catch": "off",
     "no-unreachable": "off",
     "react/no-unescaped-entities": "off",
-    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "off",
-    "@typescript-eslint/parser": [".ts", ".tsx"],
-    "@typescript-eslint/no-unused-vars": [
+    "no-unused-vars": [
       "error",
       {
         "argsIgnorePattern": "^_",
@@ -62,7 +57,10 @@
         "caughtErrorsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-empty-function": "warn",
+    "no-explicit-any": "off",
+    "@next/next/no-img-element": "off",
     "@typescript-eslint/no-explicit-any": "off"
   }
 }

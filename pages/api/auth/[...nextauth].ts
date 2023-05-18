@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/app/lib/prisma";
 import { compareHashString } from "@/app/utils/auth";
+import config from "@/app/config";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -13,7 +14,7 @@ export const authOptions: NextAuthOptions = {
           password: string;
         };
         if (!email || !password) {
-          throw new Error("Missing username or password");
+          throw new Error("Missing username or password!");
         }
         const user = await prisma.user.findUnique({
           where: {
@@ -22,28 +23,28 @@ export const authOptions: NextAuthOptions = {
         });
         // if user doesn't exist or password doesn't match
         if (!user || !(await compareHashString(password, user.password || ""))) {
-          throw new Error("Invalid username or password");
+          throw new Error("Invalid username or password!");
+        }
+        if (!user.emailVerified){
+          throw new Error("Account not verified!");
         }
         return user;
       },
     }),
   ],
-  secret: process.env.SECRET,
+  secret: config.SECRET,
   session: { strategy: "jwt", maxAge: 1 * 24 * 30 * 60 },
   callbacks: {
-    async signIn(tehe) {
-      console.log("[signIn]", tehe)
+    async signIn() {
       return true
     },
-    async redirect({ url, baseUrl }) {
+    async redirect({baseUrl }) {
       return baseUrl
     },
-    async session({ session, ...rest }) {
-      console.log("[session]", { ...rest, session })
+    async session({ session }) {
       return session
     },
-    async jwt({ token, ...rest }) {
-      console.log("[jwt]", { ...rest, token })
+    async jwt({ token }) {
       return token
     }
   }

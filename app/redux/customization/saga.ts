@@ -1,4 +1,4 @@
-import { put, takeEvery, takeLatest } from "redux-saga/effects";
+import { put, takeLatest } from "redux-saga/effects";
 import * as actionTypes from "./actions";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { customizationActions } from "./slice";

@@ -20,7 +20,7 @@ import { useFormik } from "formik";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { signInSchema } from "../schema";
-import { NAME_TRANS_VN } from "@/app/config/constant";
+import { NAME_TRANS_EN } from "@/app/config/constant";
 import Link from "next/link";
 import Animate from "@/app/components/extended/AnimateButton";
 import { signIn } from "next-auth/react"
@@ -43,7 +43,6 @@ const SignInComponent = () => {
     },
     validationSchema: signInSchema,
     onSubmit: async (_values, formikHelpers) => {
-      console.log({ _values })
       formikHelpers.setSubmitting(true)
       const result = await signIn("credentials", {
         redirect: false,
@@ -58,9 +57,9 @@ const SignInComponent = () => {
       const { ok, error } = result
       if (ok) {
         router.push("/dashboard");
-      } else {
-        toast.error(error || "");
+        return
       }
+        toast.error(error || "");
     },
   });
 
@@ -105,7 +104,7 @@ const SignInComponent = () => {
                       variant="h3"
                       color="black"
                     >
-                      {NAME_TRANS_VN.SIGN_IN_TITLE}
+                      {NAME_TRANS_EN.SIGN_IN_TITLE}
                     </Typography>
                   </Box>
                 </Grid>
@@ -124,7 +123,7 @@ const SignInComponent = () => {
                     name="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    label={NAME_TRANS_VN.EMAIL}
+                    label={NAME_TRANS_EN.EMAIL}
                     disabled={isSubmitting}
                   />
                   {touched.email && errors.email && (
@@ -136,7 +135,7 @@ const SignInComponent = () => {
                   error={Boolean(touched.password && errors.password)}
                   sx={{ ...theme.typography.customInput }}
                 >
-                  <InputLabel>{NAME_TRANS_VN.PASSWORD}</InputLabel>
+                  <InputLabel>{NAME_TRANS_EN.PASSWORD}</InputLabel>
                   <OutlinedInput
                     type={showPassword ? "text" : "password"}
                     value={values.password}
@@ -155,7 +154,7 @@ const SignInComponent = () => {
                         </IconButton>
                       </InputAdornment>
                     }
-                    label={NAME_TRANS_VN.PASSWORD}
+                    label={NAME_TRANS_EN.PASSWORD}
                     disabled={isSubmitting}
                   />
                   {touched.password && errors.password && (
@@ -175,7 +174,7 @@ const SignInComponent = () => {
                     component={Link}
                     href="/"
                   >
-                    {NAME_TRANS_VN.FORGOT_PASSWORD}?
+                    {NAME_TRANS_EN.FORGOT_PASSWORD}?
                   </Typography>
                   <Typography
                     color="secondary"
@@ -183,7 +182,7 @@ const SignInComponent = () => {
                     component={Link}
                     href="/auth/register"
                   >
-                    {NAME_TRANS_VN.DONT_HAVE_ACCOUNT}?
+                    {NAME_TRANS_EN.DONT_HAVE_ACCOUNT}?
                   </Typography>
                 </Stack>
                 <Box sx={{ mt: 2 }}>
@@ -198,7 +197,7 @@ const SignInComponent = () => {
                       color="secondary"
                       endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}
                     >
-                      {NAME_TRANS_VN.SIGN_IN}
+                      {NAME_TRANS_EN.SIGN_IN}
                     </Button>
                   </Animate>
                 </Box>

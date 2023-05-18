@@ -1,4 +1,6 @@
 import { TypographyOptions } from "@mui/material/styles/createTypography";
+
+// eslint-disable-next-line no-unused-vars
 const themeTypography: (theme: any) => TypographyOptions = (theme: any) => {
   return {
     fontFamily: theme?.customization?.fontFamily,
@@ -81,6 +83,29 @@ const themeTypography: (theme: any) => TypographyOptions = (theme: any) => {
       "& fieldset": {
         top: 0,
       },
+      "& > .MuiFormControl-root": {
+        // "& > label": {
+        //   top: 23,
+        //   left: 0,
+        //   color: theme.grey500,
+        //   '&[data-shrink="false"]': {
+        //     top: 5,
+        //   },
+        // },
+        "& > div > input, & > div > div > div > input, & > div > textarea": {
+          padding: "21px 14px",
+        },
+        "& >  div > .MuiInputAdornment-root > .MuiIconButton-root": {
+          width: 48,
+          height: 48
+        }
+        // "& legend": {
+        //   display: "none",
+        // },
+        // "& fieldset": {
+        //   top: 0,
+        // },
+      }
     },
     mainContent: {
       backgroundColor: theme.background,

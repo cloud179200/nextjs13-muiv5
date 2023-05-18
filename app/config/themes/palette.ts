@@ -1,5 +1,6 @@
 import { PaletteOptions } from "@mui/material/styles";
 
+// eslint-disable-next-line no-unused-vars
 const themePalette: (theme: any) => PaletteOptions  = (theme: any) =>  {
     return {
         mode: theme?.customization?.navType,

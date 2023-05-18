@@ -27,7 +27,7 @@ const NotFoundComponent = () => {
             width: "100%",
           }}
         >
-          <img src={SearchSVG} width="100" alt="img"/>
+          <img src={SearchSVG.src} width="100" alt="img"/>
           <img src={NotFoundPNG.src} width="300" alt="img"/>
         </Box>
         <Button

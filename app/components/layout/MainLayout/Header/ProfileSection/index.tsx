@@ -22,12 +22,11 @@ import {
 // project imports
 import MainCard from "@/app/components/cards/MainCard";
 import Transitions from "@/app/components/extended/Transitions";
-import WangBinh from "@/public/images/users/gentleman.png";
 
 // assets
 import { TbLogout, TbSettings } from "react-icons/tb";
 import moment from "moment/moment";
-import { NAME_TRANS_VN, NEXT_AUTH_STATUS } from "@/app/config/constant";
+import { NAME_TRANS_EN, NEXT_AUTH_STATUS } from "@/app/config/constant";
 import { useAppSelector } from "@/app/redux/store";
 import { signOut, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
@@ -38,21 +37,17 @@ const ProfileSection = () => {
   const theme: any = useTheme();
   const customization = useAppSelector((state) => state.customization);
   const router = useRouter();
-  // const userInfo = useAppSelector((state) => state.user.userInfo);
-  // const userDetail = useAppSelector((state) => state.user.userDetail);
   const { data, status } = useSession()
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
-  const avatarURL = useMemo(() => faker.image.avatar(), [data?.user?.email])
+  const avatarURL = useMemo(() => data?.user?.image || faker.image.avatar(), [data?.user?.email])
   const anchorRef = useRef<HTMLDivElement | null>(null);
 
   const handleLogout = async () => {
     if (status === NEXT_AUTH_STATUS.AUTHENTICATED) {
       await signOut({ redirect: false, callbackUrl: '/' })
-      // router.replace("/auth/login")
     }
     return
-    // userInfo?.email && dispatch(signOutAction(userInfo?.email));
   };
 
   const handleClose = (event: any) => {
@@ -274,7 +269,7 @@ const ProfileSection = () => {
                         <ListItemText
                           primary={
                             <Typography variant="body2">
-                              {NAME_TRANS_VN.SETTINGS}
+                              {NAME_TRANS_EN.SETTINGS}
                             </Typography>
                           }
                         />
@@ -291,7 +286,7 @@ const ProfileSection = () => {
                         </ListItemIcon>
                         <ListItemText
                           primary={
-                            <Typography variant="body2">{NAME_TRANS_VN.SIGN_OUT}</Typography>
+                            <Typography variant="body2">{NAME_TRANS_EN.SIGN_OUT}</Typography>
                           }
                         />
                       </ListItemButton>

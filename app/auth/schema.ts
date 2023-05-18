@@ -2,7 +2,9 @@
 import * as Yup from "yup";
 import { FORM_VALIDATE_ERROR_MESSAGE } from "@/app/config/constant";
 import { parsePhoneNumberWithError } from "libphonenumber-js";
-const regexPatternDOB = /\b([0-3][0-9])\/(0[1-9]|1[0-2])\/([0-9]{4}) ([01][0-9]|2[0-3]):([0-5][0-9])\b/;
+import countries from "world-countries";
+//DD/MM/YYYY HH:mm
+const regexPatternDOB = /\b\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}\b/;
 export const signUpSchema = Yup.object().shape({
   email: Yup.string()
     .email(FORM_VALIDATE_ERROR_MESSAGE.INVALID)
@@ -26,9 +28,7 @@ export const signUpSchema = Yup.object().shape({
   date_of_birth: Yup.string().matches(regexPatternDOB, FORM_VALIDATE_ERROR_MESSAGE.INVALID).required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
   country: Yup.string()
     .max(255)
-    .required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
-  state: Yup.string()
-    .max(255)
+    .oneOf(countries.map(country => country.cca3), FORM_VALIDATE_ERROR_MESSAGE.INVALID)
     .required(FORM_VALIDATE_ERROR_MESSAGE.REQUIRED),
   phone_number: Yup.string()
     .test(`phone`, FORM_VALIDATE_ERROR_MESSAGE.INVALID, (value: any) => {

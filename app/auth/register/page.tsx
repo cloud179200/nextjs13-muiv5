@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   Box,
@@ -19,24 +19,25 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import countries from "world-countries";
 import { useFormik } from "formik";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { signUpSchema } from "../schema";
-import { NAME_TRANS_VN } from "@/app/config/constant";
+import { NAME_TRANS_EN } from "@/app/config/constant";
 import { strengthColor, strengthIndicator } from "@/app/utils/password-strength";
 import Link from "next/link";
 import Animate from "@/app/components/extended/AnimateButton";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import moment from "moment";
-
 const SignUpComponent = () => {
   const theme: any = useTheme();
   const router = useRouter();
 
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
+  const maxDate = useMemo(() => moment().subtract(15, 'years'), [])
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [strength, setStrength] = useState<number>(0);
@@ -50,9 +51,8 @@ const SignUpComponent = () => {
       password: "",
       confirm_password: "",
       address: "",
-      date_of_birth: "",
-      country: "",
-      state: "",
+      date_of_birth: moment(maxDate).format("MM/DD/YYYY HH:mm"),
+      country: "VNM",
       phone_number: "",
       gender: 0,
     },
@@ -65,8 +65,7 @@ const SignUpComponent = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: _values.email,
-          password: _values.password,
+          ..._values
         }),
       })
       formikHelpers.setSubmitting(false)
@@ -75,9 +74,8 @@ const SignUpComponent = () => {
         return
       }
       if (result.status === 200) {
-        toast.success("Account created! Redirecting to login...");
         setTimeout(() => {
-          router.push("/auth/login");
+          router.push("/auth/verify");
         }, 2000);
       } else {
         toast.error(await result.text());
@@ -93,7 +91,8 @@ const SignUpComponent = () => {
     touched,
     values,
     isSubmitting,
-    handleSubmit
+    handleSubmit,
+    setFieldValue
   } = formik;
 
   const handleClickShowPassword = () => {
@@ -148,7 +147,7 @@ const SignUpComponent = () => {
                       variant="h3"
                       color="black"
                     >
-                      {NAME_TRANS_VN.SIGN_UP_TITLE}
+                      {NAME_TRANS_EN.SIGN_UP_TITLE}
                     </Typography>
                   </Box>
                 </Grid>
@@ -159,7 +158,7 @@ const SignUpComponent = () => {
                   <Grid item xs={12} sm={6}>
                     <TextField
                       fullWidth
-                      label={NAME_TRANS_VN.FIRST_NAME}
+                      label={NAME_TRANS_EN.FIRST_NAME}
                       margin="normal"
                       name="first_Name"
                       type="text"
@@ -176,7 +175,7 @@ const SignUpComponent = () => {
                   <Grid item xs={12} sm={6}>
                     <TextField
                       fullWidth
-                      label={NAME_TRANS_VN.LAST_NAME}
+                      label={NAME_TRANS_EN.LAST_NAME}
                       margin="normal"
                       name="last_Name"
                       type="text"
@@ -196,7 +195,7 @@ const SignUpComponent = () => {
                   error={Boolean(touched.email && errors.email)}
                   sx={{ ...theme.typography.customInput }}
                 >
-                  <InputLabel>{NAME_TRANS_VN.EMAIL}</InputLabel>
+                  <InputLabel>{NAME_TRANS_EN.EMAIL}</InputLabel>
                   <OutlinedInput
                     type="email"
                     value={values.email}
@@ -214,12 +213,12 @@ const SignUpComponent = () => {
                   error={Boolean(touched.password && errors.password)}
                   sx={{ ...theme.typography.customInput }}
                 >
-                  <InputLabel>{NAME_TRANS_VN.PASSWORD}</InputLabel>
+                  <InputLabel>{NAME_TRANS_EN.PASSWORD}</InputLabel>
                   <OutlinedInput
                     type={showPassword ? "text" : "password"}
                     value={values.password}
                     name="password"
-                    label={NAME_TRANS_VN.PASSWORD}
+                    label={NAME_TRANS_EN.PASSWORD}
                     onBlur={handleBlur}
                     onChange={(e) => {
                       handleChange(e);
@@ -268,12 +267,12 @@ const SignUpComponent = () => {
                   )}
                   sx={{ ...theme.typography.customInput }}
                 >
-                  <InputLabel>{NAME_TRANS_VN.CONFIRM_PASSWORD}</InputLabel>
+                  <InputLabel>{NAME_TRANS_EN.CONFIRM_PASSWORD}</InputLabel>
                   <OutlinedInput
                     type={showConfirmPassword ? "text" : "password"}
                     value={values.confirm_password}
                     name="confirm_password"
-                    label={NAME_TRANS_VN.CONFIRM_PASSWORD}
+                    label={NAME_TRANS_EN.CONFIRM_PASSWORD}
                     onBlur={handleBlur}
                     onChange={handleChange}
                     endAdornment={
@@ -306,7 +305,7 @@ const SignUpComponent = () => {
                   error={Boolean(touched.phone_number && errors.phone_number)}
                   sx={{ ...theme.typography.customInput }}
                 >
-                  <InputLabel>{NAME_TRANS_VN.PHONE_NUMBER}</InputLabel>
+                  <InputLabel>{NAME_TRANS_EN.PHONE_NUMBER}</InputLabel>
                   <OutlinedInput
                     type="phone"
                     value={values.phone_number}
@@ -323,7 +322,7 @@ const SignUpComponent = () => {
                   error={Boolean(touched.address && errors.address)}
                   sx={{ ...theme.typography.customInput }}
                 >
-                  <InputLabel>{NAME_TRANS_VN.ADDRESS}</InputLabel>
+                  <InputLabel>{NAME_TRANS_EN.ADDRESS}</InputLabel>
                   <OutlinedInput
                     type="text"
                     value={values.address}
@@ -351,13 +350,13 @@ const SignUpComponent = () => {
                         onBlur={handleBlur}
                       >
                         <MenuItem value={0}>
-                          {NAME_TRANS_VN.MALE}{" "}
+                          {NAME_TRANS_EN.MALE}{" "}
                         </MenuItem>
                         <MenuItem value={1}>
-                          {NAME_TRANS_VN.FEMALE}{" "}
+                          {NAME_TRANS_EN.FEMALE}{" "}
                         </MenuItem>
                         <MenuItem value={1}>
-                          {NAME_TRANS_VN.GENDER_OTHER}{" "}
+                          {NAME_TRANS_EN.GENDER_OTHER}{" "}
                         </MenuItem>
                       </Select>
                       {touched.gender && errors.gender && (
@@ -372,10 +371,35 @@ const SignUpComponent = () => {
                       error={Boolean(touched.date_of_birth && errors.date_of_birth)}
                       sx={{ ...theme.typography.customInput }}
                     >
-                      <InputLabel>{NAME_TRANS_VN.DATE_OF_BIRTH}</InputLabel>
-                      <DateTimeField defaultValue={moment('2022-04-17T15:30')} />
+                      {/* <InputLabel>{NAME_TRANS_VN.DATE_OF_BIRTH}</InputLabel> */}
+                      <DateTimePicker maxDate={maxDate} value={moment(values.date_of_birth)}
+                        onChange={(newValue) => setFieldValue("date_of_birth", moment(newValue).format("MM/DD/YYYY HH:mm"))} />
                       {touched.date_of_birth && errors.date_of_birth && (
                         <FormHelperText error>{errors.date_of_birth}</FormHelperText>
+                      )}
+                    </FormControl>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={matchDownSM ? 0 : 2}>
+                  <Grid item xs={12}>
+                    <FormControl
+                      fullWidth
+                      variant="outlined"
+                      error={Boolean(touched.gender && errors.gender)}
+                      sx={{ ...theme.typography.customInput }}
+                    >
+                      <Select
+                        name="country"
+                        value={values.country}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      >
+                        {countries.map(country => (<MenuItem key={country.cca3} value={country.cca3}>
+                          <span className={`fi fi-${country.cca2.toLowerCase()}`}></span>&nbsp;{country.name.official}
+                        </MenuItem>))}
+                      </Select>
+                      {touched.gender && errors.gender && (
+                        <FormHelperText error>{errors.gender}</FormHelperText>
                       )}
                     </FormControl>
                   </Grid>
@@ -389,7 +413,7 @@ const SignUpComponent = () => {
                       component={Link}
                       href="/auth/login"
                     >
-                      {NAME_TRANS_VN.ALREADY_HAVE_ACCOUNT}?
+                      {NAME_TRANS_EN.ALREADY_HAVE_ACCOUNT}?
                     </Typography>
                   </Grid>
                 </Grid>
@@ -404,7 +428,7 @@ const SignUpComponent = () => {
                     color="secondary"
                     endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}
                   >
-                    {NAME_TRANS_VN.SIGN_UP}
+                    {NAME_TRANS_EN.SIGN_UP}
                   </Button>
                 </Box>
               </form>
