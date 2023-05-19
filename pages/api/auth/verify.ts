@@ -7,7 +7,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { emailVerifyToken } = req.body;
-  debugger
   if (!emailVerifyToken) {
     res.status(400).send(resErrorJson("Invalid code"));
   }
