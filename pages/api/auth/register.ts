@@ -40,7 +40,6 @@ export default async function handler(
       name: [first_Name.trim(), last_Name.trim()].join(" "),
       email: email,
       emailVerified: null,
-      emailVerifyToken,
       password: await getHashString(password),
       image: faker.image.avatar(),
       address,
@@ -49,17 +48,43 @@ export default async function handler(
       phone_number,
       gender: Boolean(gender),
     };
+    
     try {
+      const user = await prisma.user.create({
+        data: newUserData,
+      });
+
+      const newVerifitionData = {
+        email: user.email,
+        token: emailVerifyToken,
+      }
+
+      await prisma.verificationToken.create({
+        data: newVerifitionData
+      })
+      
       await sendEmail({
         to: email,
         subject: "VERIFY EMAIL",
         html: `<a href="${config.BASE_URL}auth/verify?emailVerifyToken=${emailVerifyToken}">Verify email</a>`,
       });
-      const user = await prisma.user.create({
-        data: newUserData,
-      });
       res.status(200).json(user);
     } catch (error: any) {
+
+      await prisma.user.delete({
+        where:{
+          email
+        }
+      })
+
+      await prisma.verificationToken.delete({
+        where:{
+          email_token:{
+            email,
+            token: emailVerifyToken
+          }
+        }
+      })
       res.status(500).send(resErrorJson(error.toString()));
     }
   }
