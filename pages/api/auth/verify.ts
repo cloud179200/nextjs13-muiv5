@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { emailVerifyToken } = req.body;
-  if (!emailVerifyToken) {
+if (!emailVerifyToken) {
     res.status(400).send(resErrorJson("Invalid code"));
   }
   try {

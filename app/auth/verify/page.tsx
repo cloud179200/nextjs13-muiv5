@@ -20,6 +20,7 @@ function Verify() {
 
   const verifyToken = async () => {
     if(!emailVerifyToken){
+      setLoading(false)
       return
     }
     const res = await fetch(`/api/auth/verify`, {
