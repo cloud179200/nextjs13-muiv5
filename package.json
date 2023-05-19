@@ -68,12 +68,16 @@
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.21.4",
     "@faker-js/faker": "^8.0.1",
+    "@mui/base": "^5.0.0-alpha.87",
+    "@mui/system": "^5.8.0",
     "@next/eslint-plugin-next": "^13.4.2",
     "@svgr/webpack": "^8.0.1",
     "@types/bcrypt": "^5.0.0",
     "@types/nodemailer": "^6.4.7",
     "@types/underscore": "^1.11.4",
+    "@typescript-eslint/parser": "^5.0.0",
     "babel-loader": "^9.1.2",
+    "csstype": "^3.0.10",
     "prisma": "^4.14.1",
     "sass": "^1.62.0"
   }

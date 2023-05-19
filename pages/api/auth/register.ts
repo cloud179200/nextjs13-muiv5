@@ -55,6 +55,7 @@ export default async function handler(
       });
 
       const newVerifitionData = {
+        id: new ObjectId().toString(),
         email: user.email,
         token: emailVerifyToken,
       }
@@ -62,7 +63,7 @@ export default async function handler(
       await prisma.verificationToken.create({
         data: newVerifitionData
       })
-      
+
       await sendEmail({
         to: email,
         subject: "VERIFY EMAIL",
@@ -70,21 +71,6 @@ export default async function handler(
       });
       res.status(200).json(user);
     } catch (error: any) {
-
-      await prisma.user.delete({
-        where:{
-          email
-        }
-      })
-
-      await prisma.verificationToken.delete({
-        where:{
-          email_token:{
-            email,
-            token: emailVerifyToken
-          }
-        }
-      })
       res.status(500).send(resErrorJson(error.toString()));
     }
   }
