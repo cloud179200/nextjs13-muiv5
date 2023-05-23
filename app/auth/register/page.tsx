@@ -380,7 +380,7 @@ const SignUpComponent = () => {
                     </FormControl>
                   </Grid>
                 </Grid>
-                <Grid container spacing={matchDownSM ? 0 : 2}>
+                <Grid container>
                   <Grid item xs={12}>
                     <FormControl
                       fullWidth
@@ -404,8 +404,8 @@ const SignUpComponent = () => {
                     </FormControl>
                   </Grid>
                 </Grid>
-                <Grid container alignItems="center" justifyContent="flex-end">
-                  <Grid item>
+                <Grid container alignItems="center" justifyContent="center" rowSpacing={1}>
+                  <Grid container item justifyContent="flex-end">
                     <Typography
                       variant="subtitle1"
                       color="secondary"
@@ -416,21 +416,23 @@ const SignUpComponent = () => {
                       {NAME_TRANS_EN.ALREADY_HAVE_ACCOUNT}?
                     </Typography>
                   </Grid>
+                  <Grid item xs={12}>
+                    <Animate>
+                      <Button
+                        disableElevation
+                        disabled={!isValid || isSubmitting}
+                        fullWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}
+                      >
+                        {NAME_TRANS_EN.SIGN_UP}
+                      </Button>
+                    </Animate>
+                  </Grid>
                 </Grid>
-                <Box sx={{ mt: 2 }}>
-                  <Button
-                    disableElevation
-                    disabled={!isValid || isSubmitting}
-                    fullWidth
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                    color="secondary"
-                    endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}
-                  >
-                    {NAME_TRANS_EN.SIGN_UP}
-                  </Button>
-                </Box>
               </form>
             </Grid>
           </Grid>

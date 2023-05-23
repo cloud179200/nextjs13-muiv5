@@ -10,6 +10,8 @@ const config = {
   SMTP_FROM_EMAIL: process.env.SMTP_FROM_EMAIL,
   NODE_ENV: process.env.NODE_ENV,
   BASE_URL: process.env.BASE_URL,
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "",
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "",
 }
 
 export default config

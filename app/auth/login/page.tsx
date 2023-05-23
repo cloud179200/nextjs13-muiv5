@@ -26,15 +26,36 @@ import Animate from "@/app/components/extended/AnimateButton";
 import { signIn } from "next-auth/react"
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
+import config from "@/app/config";
 
 const SignInComponent = () => {
-  const theme: any = useTheme();
+  const theme = useTheme();
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const handleGoogleLogin = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    setSubmitting(true)
+    await fetch("/dashboard");
+    const result = await signIn("google", {redirect: false, callbackUrl: `${config.BASE_URL}api/auth/callback/google`})
+    setSubmitting(false)
+    console.log({result})
+    if (!result) {
+      toast.error("Error");
+      return
+    }
+    const { ok, error } = result
+    if (ok) {
+      router.push("/dashboard");
+      return
+    }
+    toast.error(error || "");
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -50,16 +71,16 @@ const SignInComponent = () => {
       })
       await fetch("/dashboard");
       formikHelpers.setSubmitting(false)
-      if(!result){
+      if (!result) {
         toast.error("Error");
-        return 
+        return
       }
       const { ok, error } = result
       if (ok) {
         router.push("/dashboard");
         return
       }
-        toast.error(error || "");
+      toast.error(error || "");
     },
   });
 
@@ -71,7 +92,8 @@ const SignInComponent = () => {
     isValid,
     touched,
     values,
-    isSubmitting
+    isSubmitting,
+    setSubmitting
   } = formik;
 
   return (
@@ -185,22 +207,51 @@ const SignInComponent = () => {
                     {NAME_TRANS_EN.DONT_HAVE_ACCOUNT}?
                   </Typography>
                 </Stack>
-                <Box sx={{ mt: 2 }}>
-                  <Animate>
-                    <Button
-                      disableElevation
-                      disabled={!isValid || isSubmitting}
-                      fullWidth
-                      size="large"
-                      type="submit"
-                      variant="contained"
-                      color="secondary"
-                      endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}
-                    >
-                      {NAME_TRANS_EN.SIGN_IN}
-                    </Button>
-                  </Animate>
-                </Box>
+                <Grid
+                  container
+                  justifyContent="center"
+                  alignItems="center"
+                  rowSpacing={1}
+                  marginTop={1}
+                  >
+                  <Grid item xs={12}>
+                    <Animate>
+                      <Button
+                        disableElevation
+                        disabled={!isValid || isSubmitting}
+                        fullWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        endIcon={isSubmitting && <CircularProgress color="secondary" size={20} />}
+                      >
+                        {NAME_TRANS_EN.SIGN_IN}
+                      </Button>
+                    </Animate>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Animate>
+                      <Button
+                        disableElevation
+                        disabled={isSubmitting}
+                        fullWidth
+                        size="large"
+                        variant="contained"
+                        color="primary"
+                        endIcon={<FcGoogle
+                          stroke={"currentColor"}
+                          strokeWidth={"1.5"}
+                          size={"0.9375rem" || theme}
+                          style={{ marginTop: "auto", marginBottom: "auto" }}
+                        />}
+                        onClick={handleGoogleLogin}
+                      >
+                        {NAME_TRANS_EN.SIGN_IN_WITH_GOOGLE}
+                      </Button>
+                    </Animate>
+                  </Grid>
+                </Grid>
               </form>
             </Grid>
           </Grid>

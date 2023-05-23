@@ -29,7 +29,8 @@ export const USER_ROLE = {
 
 export const NAME_TRANS_EN = {
   SIGN_IN: "Sign In",
-  SIGN_IN_WITH_FACEBOOK: "Sign In with Facebook",
+  SIGN_IN_WITH_GOOGLE: "Sign In With Google",
+  SIGN_IN_WITH_FACEBOOK: "Sign In With Facebook",
   SIGN_UP: "Sign Up",
   SIGN_OUT: "Sign Out",
   SETTINGS: "Settings",
@@ -103,6 +104,7 @@ export const NAME_TRANS_EN = {
 
 export const NAME_TRANS_VN = {
   SIGN_IN: "Đăng Nhập",
+  SIGN_IN_WITH_GOOGLE: "Đăng Nhập Bằng Google",
   SIGN_IN_WITH_FACEBOOK: "Đăng Nhập Bằng Facebook",
   SIGN_UP: "Đăng Ký",
   SIGN_OUT: "Đăng Xuất",
@@ -189,4 +191,8 @@ export const NEXT_AUTH_STATUS = {
   LOADING: "loading",
   AUTHENTICATED: "authenticated",
   UNAUTHENTICATED: "unauthenticated"
+}
+
+export const BRAND_NAME = {
+  GOOGLE: "google"
 }
