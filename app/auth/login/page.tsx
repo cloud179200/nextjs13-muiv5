@@ -27,7 +27,6 @@ import { signIn } from "next-auth/react"
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
-import config from "@/app/config";
 
 const SignInComponent = () => {
   const theme = useTheme();
@@ -42,19 +41,8 @@ const SignInComponent = () => {
     e.preventDefault();
     setSubmitting(true)
     await fetch("/dashboard");
-    const result = await signIn("google", {redirect: false, callbackUrl: `${config.BASE_URL}api/auth/callback/google`})
+    await signIn("google")
     setSubmitting(false)
-    console.log({result})
-    if (!result) {
-      toast.error("Error");
-      return
-    }
-    const { ok, error } = result
-    if (ok) {
-      router.push("/dashboard");
-      return
-    }
-    toast.error(error || "");
   }
 
   const formik = useFormik({
