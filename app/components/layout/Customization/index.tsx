@@ -24,7 +24,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 // project imports
 import SubCard from "@/app/components/cards/SubCard";
 import { gridSpacing } from "@/app/redux/customization/constant";
-import AnimateButton from "@/app/components/extended/AnimateButton";
+import Animate from "@/app/components/extended/Animate";
 import { customizationActions, customizationActionsName } from "@/app/redux/customization/slice";
 import { useAppDispatch, useAppSelector } from "@/app/redux/store";
 
@@ -131,11 +131,11 @@ const Customization = (_props: IProps) => {
             zIndex: theme.zIndex.speedDial,
           }}
         >
-          <AnimateButton type="rotate">
+          <Animate type="rotate">
             <IconButton color="inherit" size="large" disableRipple>
               <TbSettings />
             </IconButton>
-          </AnimateButton>
+          </Animate>
         </Fab>
       </Tooltip>
 

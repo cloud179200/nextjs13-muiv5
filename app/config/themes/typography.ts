@@ -110,10 +110,10 @@ const themeTypography: (theme: any) => TypographyOptions = (theme: any) => {
     mainContent: {
       backgroundColor: theme.background,
       width: "100%",
-      height: "calc(100vh - 128px)",
+      height: "calc(100vh - 116px)",
       flexGrow: 1,
       padding: "20px",
-      marginTop: "108px",
+      marginTop: "96px",
       marginRight: "20px",
       marginBottom: "20px",
       borderRadius: `${theme?.customization?.borderRadius}px`,

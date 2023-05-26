@@ -20,13 +20,13 @@ import { useFormik } from "formik";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { signInSchema } from "../schema";
-import { NAME_TRANS_EN } from "@/app/config/constant";
+import { API_MESSAGE, NAME_TRANS_EN } from "@/app/config/constant";
 import Link from "next/link";
-import Animate from "@/app/components/extended/AnimateButton";
 import { signIn } from "next-auth/react"
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import Animate from "@/app/components/extended/Animate";
 
 const SignInComponent = () => {
   const theme = useTheme();
@@ -39,10 +39,16 @@ const SignInComponent = () => {
 
   const handleGoogleLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setSubmitting(true)
-    await fetch("/dashboard");
-    await signIn("google")
-    setSubmitting(false)
+    try {
+      setSubmitting(true)
+      await fetch("/dashboard");
+      await signIn("google")
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : API_MESSAGE.SERVER_ERROR)
+    }
+    finally {
+      setSubmitting(false)
+    }
   }
 
   const formik = useFormik({
@@ -201,7 +207,7 @@ const SignInComponent = () => {
                   alignItems="center"
                   rowSpacing={1}
                   marginTop={1}
-                  >
+                >
                   <Grid item xs={12}>
                     <Animate>
                       <Button

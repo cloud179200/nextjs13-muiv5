@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "start http://localhost:3033 && next dev -p 3033",
+    "dev": "start http://localhost:3000 && next dev -p 3000",
     "build": "npx prisma generate --schema=./schema.prisma && next build",
     "start": "next start",
     "lint": "next lint"

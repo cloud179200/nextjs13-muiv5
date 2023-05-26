@@ -1,9 +1,10 @@
 "use client"
 import React from 'react'
+import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react'
 import { NEXT_AUTH_STATUS } from '@/app/config/constant'
 import CustomBox from '@/app/components/custom-box/CustomBox'
-import LoadingComponent from '@/app/components/Loading'
+const LoadingComponent = dynamic(() => import('@/app/components/Loading')) 
 
 const page = () => {
 

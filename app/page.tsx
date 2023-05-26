@@ -1,5 +1,5 @@
 "use client";
-import Animate from "@/app/components/extended/AnimateButton";
+import Animate from "@/app/components/extended/Animate";
 import Link from "next/link";
 import { Button, Grid, Stack, Typography, useTheme } from "@mui/material";
 import { useAppSelector } from "./redux/store";

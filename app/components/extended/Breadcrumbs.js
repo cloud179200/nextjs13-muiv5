@@ -8,7 +8,7 @@ import { Box, Card, Divider, Grid, Typography } from '@mui/material';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // project imports
-import { gridSpacing } from '../../redux/customization/constant';
+import { gridSpacing } from '@/app/redux/customization/constant';
 
 // assets
 import { TbTallymark1 } from 'react-icons/tb';

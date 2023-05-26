@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import AnimateButton from '@/app/components/extended/AnimateButton';
+import Animate from '@/app/components/extended/Animate';
 import { STATUS_VERIFY_EMAIL, NAME_TRANS_EN, HTTP_RESPONSE_STATUS } from '@/app/config/constant';
 import { Typography, Button, Box } from '@mui/material';
 import EmailSentPNG from "@/public/images/email-sent.png";
@@ -88,7 +88,7 @@ function Verify() {
         {statusContent.content}
       </Typography>
       {statusContent.content !== STATUS_VERIFY_EMAIL.SENT && (
-        <AnimateButton>
+        <Animate>
           <Button
             disableElevation
             fullWidth
@@ -101,7 +101,7 @@ function Verify() {
           >
             {NAME_TRANS_EN.BACK_HOME_PAGE}
           </Button>
-        </AnimateButton>
+        </Animate>
       )}
     </Box >
   );

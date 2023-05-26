@@ -27,7 +27,7 @@ import { signUpSchema } from "../schema";
 import { NAME_TRANS_EN } from "@/app/config/constant";
 import { strengthColor, strengthIndicator } from "@/app/utils/password-strength";
 import Link from "next/link";
-import Animate from "@/app/components/extended/AnimateButton";
+import Animate from "@/app/components/extended/Animate";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';

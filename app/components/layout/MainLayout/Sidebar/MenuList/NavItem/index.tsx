@@ -17,7 +17,7 @@ import {
 
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import Animate from "@/app/components/extended/AnimateButton";
+import Animate from "@/app/components/extended/Animate";
 import { IListMenuChildren } from "@/app/components/layout/menu-items";
 import { useAppDispatch, useAppSelector } from "@/app/redux/store";
 import { customizationActions, customizationActionsName } from "@/app/redux/customization/slice";
