@@ -57,10 +57,8 @@
         "caughtErrorsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/no-unused-vars": "off",
     "no-empty-function": "warn",
     "no-explicit-any": "off",
     "@next/next/no-img-element": "off",
-    "@typescript-eslint/no-explicit-any": "off"
   }
 }
