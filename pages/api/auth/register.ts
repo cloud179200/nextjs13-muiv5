@@ -32,9 +32,11 @@ export default async function handler(
   if (exists) {
     res.status(400).send("User already exists");
   } else {
+    
     const emailVerifyToken = await getHashString(
       email + password + moment().toISOString()
     );
+
     const newUserData: User = {
       id: new ObjectId().toString(),
       name: [first_Name.trim(), last_Name.trim()].join(" "),
@@ -48,21 +50,29 @@ export default async function handler(
       phone_number,
       gender: Boolean(gender),
     };
-    
+
+    const newVerifitionData = {
+      id: new ObjectId().toString(),
+      email,
+      token: emailVerifyToken,
+    }
+
     try {
       const user = await prisma.user.create({
         data: newUserData,
       });
-
-      const newVerifitionData = {
-        id: new ObjectId().toString(),
-        email: user.email,
-        token: emailVerifyToken,
+      console.log({ user });
+      if (!user) {
+        throw new Error("Create user failed");
       }
 
-      await prisma.verificationToken.create({
+      const verificationToken = await prisma.verificationToken.create({
         data: newVerifitionData
       })
+      console.log({ verificationToken });
+      if (!verificationToken) {
+        throw new Error("Create verification token failed");
+      }
 
       await sendEmail({
         to: email,
